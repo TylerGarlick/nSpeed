@@ -1,0 +1,36 @@
+<h1>Show Material</h1>
+
+
+  <div class="fields">
+    Name: <%= material.name %>
+  </div>
+  <div class="fields">
+    Heat number: <%= material.heat_number %>
+  </div>
+  <div class="fields">
+    N number: <%= material.n_number %>
+  </div>
+
+<div>
+  Successor material:
+  <% if material.successor.nil? %>
+    'none'
+  <% else %>
+    <%= link_to p.name, material_url(material) %>
+  <% end %>
+</div>
+
+  <div>
+    Predecessor material:
+    <% if material.predecessors.nil? || material.predecessors.empty? %>
+        none
+    <% else %>
+        <% material.predecessors.each do |p| %>
+        <div>
+          <%= link_to p.name, material_url(material) %>
+          <%= p.name %>
+        </div>
+        <% end %>
+    <% end %>
+  </div>
+<%= link_to 'Back', materials_url %>

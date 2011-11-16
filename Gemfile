@@ -21,6 +21,7 @@ gem 'devise'
 gem 'decent_exposure'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'carrierwave'
+gem 'ancestry'
 
 
 # To use ActiveModel has_secure_password

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111111184729) do
+ActiveRecord::Schema.define(:version => 20111115024530) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(:version => 20111111184729) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "materials", :force => true do |t|
+    t.integer  "company_id"
+    t.string   "name"
+    t.string   "heat_number"
+    t.string   "n_number"
+    t.string   "ancestry"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "materials", ["ancestry"], :name => "index_materials_on_ancestry"
 
   create_table "people", :force => true do |t|
     t.integer  "company_id"
@@ -70,9 +83,6 @@ ActiveRecord::Schema.define(:version => 20111111184729) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "username"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
