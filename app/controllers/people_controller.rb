@@ -4,20 +4,23 @@ class PeopleController < AuthenticateUserController
     if params[:query].nil? || params[:query].empty?
       company.people.active_people
     else
-      company.people.active_people.where('first_name like ? or last_name like ? or email like ?', params[:query], params[:query], params[:query])
+      pattern = "%#{params[:query]}%"
+      company.people.active_people.where('first_name like ? or last_name like ? or email like ?', pattern, pattern, pattern)
     end
   }
   expose(:person)
+  expose(:pattern) {
+    params[:query]
+  }
+
 
   def index
   end
 
   def show
-    
   end
 
   def new
-
   end
   
   def create
