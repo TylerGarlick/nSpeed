@@ -16,6 +16,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+#gem 'blueprint-rails'
 #gem 'cream', :git =>  'https://github.com/kristianmandrup/cream.git'
 gem 'devise'
 gem 'decent_exposure'
@@ -35,4 +36,3 @@ gem 'ancestry'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-

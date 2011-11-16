@@ -6,9 +6,12 @@ Nspeed::Application.routes.draw do
   resources :people
 
   resources :projects
-  resources :materials
+  resources :materials do
+    get 'related_materials'
+  end
 
   root :to => 'dashboard#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
