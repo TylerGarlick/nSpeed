@@ -1,0 +1,6 @@
+<h1>Projects</h1>
+
+<%= link_to 'New Project', new_project_path %>
+<% projects.each do |project| %>
+  <%= render project %>
+<% end %>

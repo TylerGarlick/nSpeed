@@ -1,4 +1,4 @@
-class PeopleController < ApplicationController
+class PeopleController < AuthenticateUserController
   expose(:company) {current_user.company}
   expose(:people) {
     if params[:query].nil? || params[:query].empty?
