@@ -10,6 +10,9 @@ Nspeed::Application.routes.draw do
     get 'related_materials'
   end
 
+  resources :custom_fields
+
+
   root :to => 'dashboard#index'
   
   # The priority is based upon order of creation:

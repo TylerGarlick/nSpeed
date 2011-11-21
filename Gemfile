@@ -16,7 +16,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-#gem 'blueprint-rails'
+gem 'blueprint-rails', '~> 0.1.1'
 #gem 'cream', :git =>  'https://github.com/kristianmandrup/cream.git'
 gem 'devise'
 gem 'decent_exposure'

@@ -1,0 +1,37 @@
+<h2>Fields</h2>
+
+<table id="custom_fields"></table>
+
+<div class="fields">
+  <input type="text" id="key" />
+  <input type="text" id="value" />
+  <input type="button" id="save-button" value="Save" />
+</div>
+<script>
+  $(function() {
+    loadFields();
+
+    $("#save-button").click(function(){
+      var key = $("#key").val();
+      var value = $("#value").val();
+      $.post("<%= custom_fields_url(:model => 'Project', :id => 1) %>", {key: key, value: value}, function(data){
+        if(data.success){
+          renderTableRow(key, value);
+        }
+      });
+    });
+    
+  });
+
+  function loadFields() {
+    $.get("<%= custom_fields_url(:model => 'Project', :id => 1) %>", {}, function(data) {
+      $.each(data.custom_fields, function(index, value) {
+       renderTableRow(index, value);
+      });
+    });
+  }
+
+  function renderTableRow(key, value){
+     $("#custom_fields").append("<tr><td>" + key + "<td><td>" + value + "</td></td>");
+  }
+</script>

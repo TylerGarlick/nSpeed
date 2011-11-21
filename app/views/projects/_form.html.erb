@@ -11,6 +11,9 @@
     <%= f.label :is_active %>
     <%= f.check_box :is_active %>
   </div>
+
+  <%= render :partial => 'shared/custom_fields' %>
+  
   <div class="buttons">
     <%= f.submit project.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", projects_url %>
   </div>
