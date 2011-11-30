@@ -9,19 +9,6 @@ class ProjectsController < AuthenticateUserController
   def show
   end
 
-  def new
-
-  end
-
-  def create
-    company.projects << project
-    if company.save
-      redirect_to projects_url, :notice => "#{project.name} was created successfully!"
-    else
-      render :new
-    end
-  end
-
   def edit
   end
 

@@ -1,6 +1,6 @@
 <%= form_for [:company_admin, project] do |f| %>
   <div class="fields">
-    <%= f.label :name, "Project" %>
+    <%= f.label :name, "Project #" %>
     <%= f.text_field :name %>
   </div>
   <div class="fields">
@@ -12,8 +12,8 @@
     <%= f.collection_select(:customer_id, customers, :id, :name) %>
   </div>
   <div class="fields">
-    <%= f.label :project_number, "Project Number" %>
-    <%= f.text_field :project_number %>
+    <%= f.label :project_name, "Project" %>
+    <%= f.text_field :project_name %>
   </div>
   <div class="fields">
     <%= f.label :purchase_order_number,  "PO #" %>

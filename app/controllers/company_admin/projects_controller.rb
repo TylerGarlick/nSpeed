@@ -14,7 +14,7 @@ class CompanyAdmin::ProjectsController < ApplicationController
   def create
     company.projects << project
     if company.save
-      redirect_to company_admin_projects_url, :notice => "Project #{project.project_number} was created successfully!"
+      redirect_to company_admin_projects_url, :notice => "Project #{project.name} was created successfully!"
     else
       render :new
     end
@@ -25,7 +25,7 @@ class CompanyAdmin::ProjectsController < ApplicationController
 
   def update
     if project.update_attributes(params[:project])
-      redirect_to company_admin_projects_url, :notice => "Project #{project.project_number} was updated successfully!"
+      redirect_to company_admin_projects_url, :notice => "Project #{project.name} was updated successfully!"
     else
       render :new
     end
