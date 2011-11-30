@@ -1,0 +1,33 @@
+<%= form_for [:company_admin, project] do |f| %>
+  <div class="fields">
+    <%= f.label :name, "Project" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="fields">
+    <%= f.label :project_type_id %>
+    <%= f.collection_select(:project_type_id, project_types, :id, :name) %>
+  </div>
+  <div class="fields">
+    <%= f.label :customer_id %>
+    <%= f.collection_select(:customer_id, customers, :id, :name) %>
+  </div>
+  <div class="fields">
+    <%= f.label :project_number, "Project Number" %>
+    <%= f.text_field :project_number %>
+  </div>
+  <div class="fields">
+    <%= f.label :purchase_order_number,  "PO #" %>
+    <%= f.text_field :purchase_order_number %>
+  </div>
+  <div class="fields">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="fields">
+    <%= f.label :is_active, "Active" %>
+    <%= f.check_box :is_active %>
+  </div>
+  <div class="buttons">
+    <%= f.submit project.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", company_admin_projects_url %>
+  </div>
+<% end %>

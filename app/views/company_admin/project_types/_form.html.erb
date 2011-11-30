@@ -1,0 +1,10 @@
+<%= form_for [:company_admin, project_type] do |f| %>
+  <%= f.error_messages %>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="buttons">
+    <%= f.submit project_type.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", company_admin_project_types_url %>
+  </div>
+<% end %>

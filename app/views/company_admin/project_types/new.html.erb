@@ -1,0 +1,10 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to company.name, company_admin_dashboard_url %> > <%= link_to "Project Types", company_admin_project_types_url %></h1>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'company_admin/shared/sidebar' %>
+<% end %>
+
+<h1>New Project Type</h1>
+<%= render :partial => 'form' %>

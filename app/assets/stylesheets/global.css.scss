@@ -2,9 +2,110 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-header { background: #252525; padding: 15px; }
-header nav a { color:white; display:inline-block;}
-header .logo, header .projects-dropdown {float: left;}
-header .logo {}
-header .projects-dropdown {float: left;}
-footer { background: #484848; padding: 10px; height: 30px; position: absolute; bottom: 0px; left: 0px; right: 0px; border-top: 3px solid #868686;}
+body{ background: #f0f0f0;}
+a {color: #005b7f;  display: inline-block; padding: 3px; text-decoration:none;}
+a:hover {background: #005b7f; color: white;}
+header { background: #252525; padding: 15px; height: 30px; }
+header nav a { color:white; display:inline-block; padding: 5px;}
+
+header .logo, header .projects-dropdown {float:left;}
+header .projects-dropdown {margin-left: 25px;}
+header .navigation {float: right; margin-right: 25px;}
+header .navigation ul {margin:0px; color:white; list-style:none; padding: 0px; }
+header .navigation ul li {float: left; }
+header .navigation ul li:hover {float: left; background: #005b7f; }
+header .navigation ul li .submenu {display: none; position: absolute; background: #005b7f; padding: 20px; width: 280px; margin-left: -215px;}
+header .navigation ul li:hover .submenu {display:block;}
+header .navigation a {color:white; display: block; padding: 10px;}
+header .navigation .submenu .submenu-section {float: left; width: 130px; margin-right: 10px;}
+header .navigation .submenu .submenu-section h3 {color:white; font-size: 14px; font-weight:bold; margin: 0px; padding: 0px;}
+header .navigation .submenu .submenu-section ul {margin:0px; padding: 0px; list-style:none;}
+header .navigation .submenu .submenu-section ul li {padding: 0px;}
+//header .navigation .submenu-parent .submenu {display:none; position: absolute; background: #005b7f; padding: 10px; width: 280px; margin-left: -200px;}
+//header .navigation .submenu-parent:hover .submenu {display:block;}
+
+.flash {background: #009e16; color:white; text-align:center; font-size: 16px; font-weight: bold; padding: 10px;}
+.italic {font-style:italic;}
+tr:nth-child(even) td { background: #e7e7e7 !important; }
+tr th {background: #005b7f; color:white;}
+
+// Fields
+.fields input[type="text"], .fields input[type="password"], .fields textarea {padding: 5px; font-size: 12px;}
+.fields {margin-bottom: 5px;}
+.fields label {display: block;}
+
+.buttons {margin-top: 10px;}
+.buttons a {display: inline-block; margin-left: 5px;}
+
+// Errors
+.errorExplanation {border: 5px solid #ae0000; padding: 15px; background: #ffd9d9; margin-bottom: 15px;}
+.field_with_errors label {color: #ae0000; padding: 0px; margin: 0px;}
+.field_with_errors input {background: #ffd9d9; border: 1px solid #ae0000; }
+
+
+// Layout
+.main-layout {border: 0px; margin: 20px 0px; height: 1000px;}
+
+// Left side
+.left-layout {width: 70%; vertical-align: top; background: white; padding: 0px;  box-shadow: 2px 5px 5px #808080;}
+.left-layout-title {background: #cdcdcd; padding: 10px; height: 20px; }
+.left-layout-title h1 {font-size: 18px; font-weight: bold; padding: 0px; margin: 0px; float:left; }
+.left-layout-title .nav {float: right;}
+.left-layout-container {margin: 10px}
+
+// Right side
+.right-layout {width: 30%;  vertical-align: top;}
+.right-layout-container {margin: 10px}
+.right-layout-container h2 {font-size: 18px; font-weight: bold; padding: 0px; margin: 0px;}
+.sidebar-section {margin-bottom: 15px;}
+.sidebar-section ul {padding: 0px; list-style: none; margin: 0px;}
+
+
+// Pagination
+.digg_pagination {
+  background: white;
+  cursor: default;
+  /* self-clearing method: */ }
+  .digg_pagination a, .digg_pagination span, .digg_pagination em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 1px; }
+  .digg_pagination .disabled {
+    color: #999999;
+    border: 1px solid #dddddd; }
+  .digg_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #2e6ab1;
+    color: white;
+    border: 1px solid #2e6ab1; }
+  .digg_pagination a {
+    text-decoration: none;
+    color: #105cb6;
+    border: 1px solid #9aafe5; }
+    .digg_pagination a:hover, .digg_pagination a:focus {
+      color: #000033;
+      border-color: #000033; }
+  .digg_pagination .page_info {
+    background: #2e6ab1;
+    color: white;
+    padding: 0.4em 0.6em;
+    width: 22em;
+    margin-bottom: 0.3em;
+    text-align: center; }
+    .digg_pagination .page_info b {
+      color: #000033;
+      background: #6aa6ed;
+      padding: 0.1em 0.25em; }
+  .digg_pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .digg_pagination {
+    height: 1%; }
+  *:first-child + html .digg_pagination {
+    overflow: hidden; }
+

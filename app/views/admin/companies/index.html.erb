@@ -1,0 +1,6 @@
+<h1>Companies</h1>
+
+<%= link_to "New Company", new_admin_company_url %>
+<% companies.each do |company| %>
+  <%= render company %>
+<% end %>

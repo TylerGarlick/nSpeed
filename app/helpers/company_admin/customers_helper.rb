@@ -1,0 +1,2 @@
+module CompanyAdmin::CustomersHelper
+end

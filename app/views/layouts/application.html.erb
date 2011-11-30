@@ -2,10 +2,14 @@
 <html>
 <head>
   <title>nSpeed</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" %>
 
+  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" %>
+  <%= stylesheet_link_tag '/stylesheets/blueprint/screen', "/stylesheets/blueprint/plugins/fancy-type/screen", "/stylesheets/blueprint/plugins/buttons/screen", :media => 'screen, projection' %>
+  <!--[if lt IE 8]>
+    <%= stylesheet_link_tag 'blueprint/ie', :media => 'screen, projection' %>
+  <![endif]-->
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 </head>
@@ -15,26 +19,74 @@
 <% end %>
 
 <header>
-  <div class="logo">nSpeed</div>
+
+  <div class="logo"><%= image_tag("logo.png") %></div>
   <div class="projects-dropdown">
-    <select>
-      <option>Select a Project</option>
+    <select id="projects">
+      <option value="">Select a Project</option>
+      <optgroup label="<%= current_user.company.name %> Projects">
+        <% current_user.company.projects.each do |project| %>
+          <option value="<%= project.id %>"><%= project.project_number %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="Shared Projects">
+
+      </optgroup>
     </select>
   </div>
-  <nav>
-    <%= link_to 'Dashboard', root_url %>
-  </nav>
+  <div class="navigation">
+    <ul>
+      <li><%= link_to 'Dashboard', root_url %></li>
+      <li><a href="#">Settings</a>
+        <div class="submenu">
+          <div class="submenu-section">
+            <h3>Account Settings</h3>
+          </div>
+          <div class="submenu-section">
+            <h3>System Settings</h3>
+            <ul>
+              <li><%= link_to "Manage #{current_user.company.name}", company_admin_dashboard_url %></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li>
+        <% if user_signed_in? %>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        <% else %>
+          <%= link_to('Login', new_user_session_path) %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </header>
 
-<section>
-  <%= yield %>
-</section>
+<article>
+  <table class="main-layout">
+    <tr>
+      <td class="left-layout">
+        <div class="left-layout-title"><%= yield :titlebar %></div>
+        <div class="left-layout-container"><%= yield %></div>
+      </td>
+      <td class="right-layout">
+        <div class="right-layout-container"><%= yield :sidebar %></div>
+      </td>
+    </tr>
+  </table>
 
-<footer>
-  
-</footer>
+</article>
+
 <script>
-  $(function(){
+  $(function() {
+    $("#projects").change(function() {
+      var option = $(this);
+      if (option.val() !== null && option.val().length > 0) {
+        window.location = "/projects/" + option.val();
+      }
+    });
+
+    $('.flash').delay(2000).slideUp();
+
   });
 </script>
 <%= yield :javascript %>

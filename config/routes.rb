@@ -5,16 +5,30 @@ Nspeed::Application.routes.draw do
 
   resources :people
 
-  resources :projects
+  resources :projects do
+    resources :project_documents
+    resources :project_requirements
+  end
+
   resources :materials do
     get 'related_materials'
   end
 
   resources :custom_fields
 
+  namespace :admin do
+    resources :companies
+  end
+
+  namespace :company_admin do
+    resource :dashboard
+    resources :projects
+    resources :customers
+    resources :project_types
+  end
 
   root :to => 'dashboard#index'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

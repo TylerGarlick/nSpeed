@@ -1,0 +1,7 @@
+<h1>Project <%= project.name %> > Project Requirements</h1>
+
+<%= link_to "New Project Requirement", new_project_project_requirement_url %><br />
+
+<% project_requirements.each do |project_requirement| %>
+<%= render project_requirement %>
+<% end  %>

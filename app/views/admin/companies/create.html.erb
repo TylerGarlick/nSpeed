@@ -1,0 +1,8 @@
+<h1>New Company</h1>
+
+<%= form_for [:admin, company] do |f| %>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+<% end  %>

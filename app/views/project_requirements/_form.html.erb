@@ -1,0 +1,14 @@
+<%= form_for [:project, project_requirement] do |f| %>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :ordinal %>
+    <%= f.text_field :ordinal %>
+  </div>
+  <div class="buttons">
+    <%= f.submit project_requirement.new_record? ? "Create" : "Update" %>
+  </div>
+<% end %>

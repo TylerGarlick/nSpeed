@@ -1,0 +1,28 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to company.name, company_admin_dashboard_url %> > Customers</h1>
+  <div class="nav">
+    <%= link_to 'New Customer', new_company_admin_customer_url %>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'company_admin/shared/sidebar' %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+
+  <% customers.each do |customer| %>
+    <tr>
+      <td><%= customer.name %></td>
+      <td><%= link_to "Edit", edit_company_admin_customer_url(customer) %> </td>
+    </tr>
+  <% end  %>
+</table>
+
+<div class="digg_pagination">
+  <%= will_paginate customers %>
+</div>

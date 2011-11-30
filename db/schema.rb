@@ -11,12 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118210229) do
+ActiveRecord::Schema.define(:version => 20111129235919) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "customers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
   end
 
   create_table "documents", :force => true do |t|
@@ -58,6 +65,21 @@ ActiveRecord::Schema.define(:version => 20111118210229) do
     t.datetime "updated_at"
   end
 
+  create_table "project_requirements", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "name"
+    t.integer  "ordinal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_types", :force => true do |t|
+    t.integer  "company_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "projects", :force => true do |t|
     t.integer  "company_id"
     t.string   "name"
@@ -66,6 +88,10 @@ ActiveRecord::Schema.define(:version => 20111118210229) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "custom_fields"
+    t.integer  "customer_id"
+    t.integer  "project_type_id"
+    t.string   "purchase_order_number"
+    t.string   "project_number"
   end
 
   create_table "rails_admin_histories", :force => true do |t|

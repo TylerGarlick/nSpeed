@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -16,13 +16,15 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'blueprint-rails', '~> 0.1.1'
+#gem 'blueprint-rails', '~> 0.1.1'
 #gem 'cream', :git =>  'https://github.com/kristianmandrup/cream.git'
 gem 'devise'
 gem 'decent_exposure'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'carrierwave'
 gem 'ancestry'
+gem "dynamic_form"
+gem 'will_paginate'
 
 
 # To use ActiveModel has_secure_password
