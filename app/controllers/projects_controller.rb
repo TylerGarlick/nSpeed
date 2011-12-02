@@ -9,9 +9,6 @@ class ProjectsController < AuthenticateUserController
   def show
   end
 
-  def edit
-  end
-
   def update
     if project.update_attributes(params[:project])
       redirect_to projects_url, :notice => "#{project.name} was updated successfully!"

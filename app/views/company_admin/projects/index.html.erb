@@ -13,16 +13,14 @@
 <table>
   <tr>
     <th>Project #</th>
-
     <th>Customer</th>
     <th>Project</th>
     <th>PO #</th>
-
     <th></th>
   </tr>
   <% projects.each do |project| %>
     <tr>
-      <td><%= project.name %></td>
+      <td><%= link_to project.name, company_admin_project_url(project) %></td>
       <td><%= project.customer.name %></td>
       <td><%= project.project_name %></td>
       <td><%= project.purchase_order_number %></td>

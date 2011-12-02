@@ -1,28 +1,26 @@
-<h1>People</h1>
+<% content_for :titlebar do %>
+  <h1><%= link_to "Project #{project.name}", project_url(project) %> > People</h1>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'projects/project_sidebar' %>
+<% end %>
 
 <div class="search-bar">
-  <%= form_tag people_url, :method => :get do %>
+  <%= form_tag project_people_url(project), :method => :get do %>
     <%= text_field_tag :query, pattern %> <%= submit_tag 'Search' %>
   <% end %>
 </div>
 
-<%= link_to 'New Person', new_person_url %><br />
-
 <table>
   <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Phone</th>
+    <th>Name</th>
     <th></th>
   </tr>
   <% people.each do |person| %>
     <tr>
-      <td><%= person.first_name %></td>
-      <td><%= person.last_name %></td>
-      <td><%= person.email %></td>
-      <td><%= person.phone %></td>
-      <td><%= link_to 'Show', person_url(person) %> | <%= link_to 'Edit', edit_person_url(person) %> | <%= link_to 'Delete', person_url(person), :method => :delete, :confirm => "Are you sure you want to delete #{person.full_name}?" %></td>
+      <td><%= link_to person.full_name, project_person_url(project, person)  %></td>
+      <td></td>
     </tr>
   <% end  %>
 </table>

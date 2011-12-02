@@ -1,6 +1,11 @@
-<h1>Projects</h1>
+<% content_for :titlebar do %>
+  <h1>Projects</h1>
+<% end %>
 
-<%= link_to 'New Project', new_project_path %>
+<% content_for :sidebar do %>
+  <h2>Resources</h2>
+<% end %>
+
 <% projects.each do |project| %>
   <%= render project %>
 <% end %>

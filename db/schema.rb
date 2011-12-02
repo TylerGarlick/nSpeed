@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130160334) do
+ActiveRecord::Schema.define(:version => 20111201195114) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -26,13 +26,24 @@ ActiveRecord::Schema.define(:version => 20111130160334) do
     t.integer  "company_id"
   end
 
+  create_table "document_assets", :force => true do |t|
+    t.integer  "document_id"
+    t.string   "asset_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "documents", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "asset_url"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "documents_projects", :id => false, :force => true do |t|
+    t.integer "document_id"
+    t.integer "project_id"
   end
 
   create_table "materials", :force => true do |t|
@@ -65,12 +76,28 @@ ActiveRecord::Schema.define(:version => 20111130160334) do
     t.datetime "updated_at"
   end
 
+  create_table "people_projects", :id => false, :force => true do |t|
+    t.integer "person_id"
+    t.integer "project_id"
+  end
+
+  create_table "prerequisites", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "project_requirements", :force => true do |t|
     t.integer  "project_id"
     t.string   "name"
     t.integer  "ordinal"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "customer_document_reference"
+    t.integer  "person_id"
+    t.integer  "prerequisite_id"
   end
 
   create_table "project_types", :force => true do |t|

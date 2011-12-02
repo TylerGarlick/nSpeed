@@ -1,0 +1,37 @@
+
+<% content_for :titlebar do %>
+  <h1><%= link_to company.name, company_admin_dashboard_url %> > People</h1>
+  <div class="nav">
+    <%= link_to 'New Person', new_company_admin_person_url %>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'company_admin/shared/sidebar' %>
+<% end %>
+
+
+<div class="search-bar">
+  <%= form_tag company_admin_people_url, :method => :get do %>
+    <%= text_field_tag :query, pattern %> <%= submit_tag 'Search' %>
+  <% end %>
+</div>
+
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th></th>
+  </tr>
+  <% people.each do |person| %>
+    <tr>
+      <td><%= person.first_name %></td>
+      <td><%= person.last_name %></td>
+      <td><%= person.email %></td>
+      <td><%= person.phone %></td>
+      <td><%= link_to 'Show', company_admin_person_url(person) %> | <%= link_to 'Edit', edit_company_admin_person_url(person) %> | <%= link_to 'Delete', company_admin_person_url(person), :method => :delete, :confirm => "Are you sure you want to delete #{person.full_name}?" %></td>
+    </tr>
+  <% end  %>
+</table>

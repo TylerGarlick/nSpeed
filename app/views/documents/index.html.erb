@@ -1,0 +1,23 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Project #{project.name}", project_url(project) %> > Documents</h1>
+  <div class="nav">
+    <%= link_to "New Document", new_project_document_url(project) %>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'projects/project_sidebar' %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  <% documents.each do |document| %>
+    <tr>
+      <td><%= document.name %></td>
+      <td><%= link_to "Edit", edit_project_document_url(project, document) %> <%= link_to "Delete", project_document_url(project, document), :method => :delete, :confirm => "Are you sure you want to delete #{document.name}?" %></td>
+    </tr>
+  <% end %>
+</table>

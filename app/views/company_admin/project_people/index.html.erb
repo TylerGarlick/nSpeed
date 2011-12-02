@@ -1,0 +1,58 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Projects", company_admin_projects_url %>
+    > <%= link_to "Project #{project.name}", company_admin_project_url(project) %></h1>
+  <div class="nav">
+    <a href="#" id="btn_add_person_to_project">Add Person to Project</a>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'company_admin/projects/project_sidebar' %>
+<% end %>
+
+
+<h1>People</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  <% people.each do |person| %>
+    <tr>
+      <td><%= person.full_name %></td>
+      <td><%= link_to "Remove", remove_company_admin_project_project_person_url(project, person), :method => :delete, :confirm => "Are you sure you want to remove #{person.first_name} #{person.last_name}?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<div class="modal jqmWindow" id="add_people_modal">
+  <h3>Add People</h3>
+
+  <select multiple="multiple" name="people" class="people-selection-list">
+    <% all_people.each do |person| %>
+      <option value="<%= person.id %>"><%= person.full_name %></option>
+    <% end %>
+  </select>
+
+  <div class="buttons">
+    <input type="button" value="Save" id="btn_save_people"/> <input type="button" value="Close" class="jqmClose"/>
+  </div>
+</div>
+
+
+<script>
+  $(function() {
+    $(".modal").jqm({modal: true, overlay: 25});
+
+    $("#btn_add_person_to_project").click(function() {
+      $("#add_people_modal").jqmShow();
+    });
+
+    $("#btn_save_people").click(function() {
+      $.post("<%= save_company_admin_project_project_people_url(project) %>", { "ids":  $('select[name=people]').val()}, function(data){
+        window.location = "<%= company_admin_project_project_people_url %>";
+      });
+    });
+  });
+</script>

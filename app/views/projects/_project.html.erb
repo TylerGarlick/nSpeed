@@ -1,10 +1,6 @@
 <div class="project">
-  <h3><%= link_to project.name, project_url(project) %></h3>
+  <h3><%= link_to "Project #{project.name}", project_url(project) %></h3>
   <div class="menu">
-    <ul>
-      <li>Documents</li>
-      <li>Materials</li>
-      <li>People</li>
-    </ul>
+    <%= project.customer.name %>
   </div>
 </div>

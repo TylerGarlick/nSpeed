@@ -1,0 +1,2 @@
+module SubmittalLogsHelper
+end

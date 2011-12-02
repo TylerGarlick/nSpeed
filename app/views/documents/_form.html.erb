@@ -1,0 +1,17 @@
+<%= form_for [project, document] do |f| %>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="fields">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="fields">
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </div>
+  <div class="buttons">
+    <%= f.submit document.new_record? ? "Create" : "Update" %>
+  </div>
+<% end %>

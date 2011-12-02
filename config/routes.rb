@@ -3,18 +3,15 @@ Nspeed::Application.routes.draw do
 
   devise_for :users
 
-  resources :people
-
   resources :projects do
-    resources :project_documents
-    resources :project_requirements
+    resources :documents
+    resources :people
+    resource :submittal_logs
   end
 
   resources :materials do
     get 'related_materials'
   end
-
-  resources :custom_fields
 
   namespace :admin do
     resources :companies
@@ -22,11 +19,24 @@ Nspeed::Application.routes.draw do
 
   namespace :company_admin do
     resource :dashboard
-    resources :projects
+    resources :projects do
+      resources :project_requirements
+      resources :prerequisites
+      resources :project_people do
+        collection do
+          post 'save'
+        end
+        member do
+          delete 'remove'
+        end
+      end
+    end
     resources :customers
     resources :project_types
+    resources :people
   end
 
+  resources :custom_fields
   root :to => 'dashboard#index'
 
   # The priority is based upon order of creation:

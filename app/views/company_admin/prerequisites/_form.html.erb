@@ -1,0 +1,13 @@
+<%= form_for [:company_admin, project, prerequisite] do |f| %>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="fields">
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </div>
+  <div class="buttons">
+    <%= f.submit prerequisite.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", company_admin_project_prerequisites_url(project) %>
+  </div>
+<% end %>

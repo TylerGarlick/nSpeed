@@ -1,0 +1,12 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Projects", company_admin_projects_url %>
+    > <%= link_to "Pre-Requisites", company_admin_project_prerequisites_url %></h1>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "company_admin/projects/project_sidebar" %>
+<% end %>
+
+<h1>Update Pre-Requisite: <%= prerequisite.name %></h1>
+
+<%= render :partial => 'form' %>

@@ -22,6 +22,7 @@ gem 'devise'
 gem 'decent_exposure'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'carrierwave'
+gem 'fog'
 gem 'ancestry'
 gem "dynamic_form"
 gem 'will_paginate'
@@ -37,4 +38,4 @@ gem 'will_paginate'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'ruby-debug19', :require => 'ruby-debug'

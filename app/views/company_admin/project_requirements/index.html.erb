@@ -1,0 +1,27 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Projects", company_admin_projects_url %> > <%= link_to "Project #{project.name}", company_admin_project_url(project) %> > Requirements</h1>
+  <div class="nav">
+    <%= link_to "New Requirement", new_company_admin_project_project_requirement_url(project) %>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+   <%= render :partial => "company_admin/projects/project_sidebar" %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Pre-Requisite</th>
+    <th>Customer Document #</th>
+    <th></th>
+  </tr>
+  <% project_requirements.each do |requirement| %>
+    <tr>
+      <td><%= requirement.name %></td>
+      <td><%= requirement.prerequisite.name %></td>
+      <td><%= requirement.customer_document_reference %></td>
+      <td><%= link_to "Edit", edit_company_admin_project_project_requirement_url(project, requirement) %> <%= link_to "Delete", company_admin_project_project_requirement_url(project, requirement), :method => :delete, :confirm => "Are you sure you want to delete #{requirement.name}?" %></td>
+    </tr>
+  <% end  %>
+</table>

@@ -3,10 +3,5 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <h2>Resources</h2>
-  <div class="sidebar-section">
-    <ul>
-      <li><%= link_to "Projects", projects_url %></li>
-    </ul>
-  </div>
+  <%= render :partial => 'project_sidebar' %>
 <% end %>

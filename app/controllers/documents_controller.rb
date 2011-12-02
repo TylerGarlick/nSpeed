@@ -1,4 +1,4 @@
-class ProjectDocumentsController < ApplicationController
+class DocumentsController < ApplicationController
   expose(:project)
   expose(:documents) {project.documents}
   expose(:document)
@@ -15,7 +15,7 @@ class ProjectDocumentsController < ApplicationController
   def create
     project.documents << document
     if project.save
-      redirect_to project_project_documents_url, :notice => "Document was created successfully!"
+      redirect_to project_documents_url, :notice => "Document was created successfully!"
     else
       render :new
     end
@@ -26,7 +26,7 @@ class ProjectDocumentsController < ApplicationController
 
   def update
     if document.update_attributes(params[:document])
-      redirect_to project_project_documents_url, :notice => "Document was updated successfully!"
+      redirect_to project_documents_url, :notice => "Document was updated successfully!"
     else
       render :edit
     end
@@ -34,6 +34,6 @@ class ProjectDocumentsController < ApplicationController
 
   def destroy
     document.destroy?
-    redirect_to project_project_documents_url, :notice => "Document was deleted successfully!"
+    redirect_to project_documents_url, :notice => "Document was deleted successfully!"
   end
 end
