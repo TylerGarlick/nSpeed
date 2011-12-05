@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
+  include Authorization::User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  symbolize :user_type, :in => [:super_admin, :company_admin, :user], :scopes => true
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :login, :password, :password_confirmation, :remember_me, :company
+  attr_accessible :username, :email, :login, :password, :password_confirmation, :remember_me, :company, :user_type
   attr_accessor :login, :company
 
   belongs_to :company

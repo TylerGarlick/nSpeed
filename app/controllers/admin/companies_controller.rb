@@ -1,4 +1,7 @@
 class Admin::CompaniesController < ApplicationController
+  include Authorization
+  before_filter :is_super_admin?
+
   expose(:companies) {Company.all}
   expose(:company)
 
@@ -20,5 +23,5 @@ class Admin::CompaniesController < ApplicationController
 
   def destroy
   end
-  
+
 end
