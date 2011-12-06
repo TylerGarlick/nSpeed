@@ -1,0 +1,11 @@
+<% content_for :titlebar do %>
+  <h1>Role <%= role.name %></h1>
+    <div class = 'nav'>
+      <%= link_to "Edit", edit_company_admin_role_url(role) %>
+      <%= link_to "Delete", company_admin_role_url(role), :method => :delete, :confirm => "Are you sure you want to delete #{role.name}?" %>
+    </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'role_sidebar' %>
+<% end %>

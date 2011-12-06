@@ -1,0 +1,10 @@
+<%= form_for [:company_admin, role] do |f| %>
+    <div class="fields">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="buttons">
+      <%= f.submit role.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", company_admin_roles_url %>
+    </div>
+<% end  %>
