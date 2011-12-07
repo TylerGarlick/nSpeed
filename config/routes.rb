@@ -38,6 +38,7 @@ Nspeed::Application.routes.draw do
     resources :customers
     resources :project_types
     resources :people
+    resources :roles
   end
 
   resources :custom_fields

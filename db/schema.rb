@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207174353) do
+ActiveRecord::Schema.define(:version => 20111201195114) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20111207174353) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "customer_document_reference"
+    t.integer  "project_requirement_type_id"
     t.integer  "person_id"
     t.integer  "prerequisite_id"
   end
@@ -142,6 +143,14 @@ ActiveRecord::Schema.define(:version => 20111207174353) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.integer  "company_id"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "submittal_statuses", :force => true do |t|
     t.integer  "project_id"
     t.string   "name"
@@ -157,9 +166,7 @@ ActiveRecord::Schema.define(:version => 20111207174353) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "users", :force => true do |t|
+  end  create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
@@ -174,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20111207174353) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+    t.string   "user_type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

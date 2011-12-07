@@ -1,0 +1,15 @@
+<% content_for :titlebar do %>
+  <h1>Roles</h1>
+    <div class='nav'>
+      <%= link_to "New Role", new_company_admin_role_url %>
+    </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <h2>Resources</h2>
+<% end %>
+
+
+<% roles.each do |role| %>
+  <%= render role %>
+<% end %>
