@@ -1,0 +1,11 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Projects", company_admin_projects_url %> > <%= link_to "Project #{project.name}", company_admin_project_url(project) %> > <%= link_to "Submittal Statuses", company_admin_project_submittal_statuses_url(project)  %></h1>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "company_admin/projects/project_sidebar" %>
+<% end %>
+
+<h1>Edit Submittal Status</h1>
+<%= render :partial => 'form' %>
+

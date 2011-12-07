@@ -3,14 +3,27 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
+
+  <div class="fields">
+    <h3>Project Requirements</h3>
+    <% project_requirements.each do |project_requirement| %>
+      <div>
+        <%= check_box_tag "document[project_requirement_ids][]", project_requirement.id, document.project_requirements.include?(project_requirement) %>
+        <%= project_requirement.name %>
+      </div>
+    <% end %>
+  </div>
+
   <div class="fields">
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
+
   <div class="fields">
     <%= f.label :active %>
     <%= f.check_box :active %>
   </div>
+
   <div class="buttons">
     <%= f.submit document.new_record? ? "Create" : "Update" %>
   </div>

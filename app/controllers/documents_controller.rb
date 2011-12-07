@@ -1,7 +1,10 @@
 class DocumentsController < ApplicationController
   expose(:project)
+  expose(:project_requirements) {project.project_requirements}
+  expose(:submittal_statuses) {project.submittal_statuses}
   expose(:documents) {project.documents}
   expose(:document)
+
 
   def index
   end
@@ -15,7 +18,7 @@ class DocumentsController < ApplicationController
   def create
     project.documents << document
     if project.save
-      redirect_to project_documents_url, :notice => "Document was created successfully!"
+      redirect_to project_document_url, :notice => "Document was created successfully!"
     else
       render :new
     end
@@ -25,6 +28,8 @@ class DocumentsController < ApplicationController
   end
 
   def update
+    params[:document][:project_requirement_ids] ||= []
+
     if document.update_attributes(params[:document])
       redirect_to project_documents_url, :notice => "Document was updated successfully!"
     else

@@ -1,0 +1,38 @@
+<%= form_for [:company_admin, project, submittal_status] do |f| %>
+  <%= f.error_messages %>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :color %>
+    <div class="colorpicker_holder"></div>
+    <%= f.hidden_field :color %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </div>
+
+  <div class="buttons">
+    <%= f.submit submittal_status.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", company_admin_project_submittal_statuses_url(project) %>
+  </div>
+<% end %>
+
+<script>
+  $(function () {
+    var hidden_field = $("#submittal_status_color");
+    $(".colorpicker_holder").ColorPicker({
+      color: hidden_field.val().replace("#", ""),
+      flat:true,
+      onChange:function (hsb, hex, rgb) {
+        hidden_field.val("#" + hex);
+      },
+      onBeforeShow: function () {
+        $(this).ColorPickerSetColor(hidden_field.val().replace("#", ""));
+      }
+    });
+  });
+</script>

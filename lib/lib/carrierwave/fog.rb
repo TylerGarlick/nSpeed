@@ -5,4 +5,5 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => 'yyy'        # required
   }
   config.fog_directory  = 'name_of_directory'                     # required
+  config.fog_public     = false
 end

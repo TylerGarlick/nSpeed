@@ -4,7 +4,10 @@ Nspeed::Application.routes.draw do
   devise_for :users
 
   resources :projects do
-    resources :documents
+    resources :documents do
+      resources :document_assets
+    end
+
     resources :people
     resource :submittal_logs
   end
@@ -21,6 +24,7 @@ Nspeed::Application.routes.draw do
     resource :dashboard
     resources :projects do
       resources :project_requirements
+      resources :submittal_statuses
       resources :prerequisites
       resources :project_people do
         collection do

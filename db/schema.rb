@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201195114) do
+ActiveRecord::Schema.define(:version => 20111207174353) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(:version => 20111201195114) do
     t.string   "asset_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "customer_response_url"
+    t.datetime "customer_response_date"
+    t.integer  "submittal_status_id"
   end
 
   create_table "documents", :force => true do |t|
@@ -39,6 +42,11 @@ ActiveRecord::Schema.define(:version => 20111201195114) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "documents_project_requirements", :id => false, :force => true do |t|
+    t.integer "document_id"
+    t.integer "project_requirement_id"
   end
 
   create_table "documents_projects", :id => false, :force => true do |t|
@@ -133,6 +141,23 @@ ActiveRecord::Schema.define(:version => 20111201195114) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "submittal_statuses", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "name"
+    t.string   "color"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "submittals", :force => true do |t|
+    t.integer  "requirement_id"
+    t.string   "customer_document"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

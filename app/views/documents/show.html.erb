@@ -1,0 +1,45 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Project #{project.name}", project_url(project) %> > <%= link_to "Documents", project_documents_url(project) %></h1>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'projects/project_sidebar' %>
+<% end %>
+
+<h1><%= document.name %></h1>
+
+
+<table>
+  <tr>
+    <th>Status</th>
+    <th>File</th>
+    <th>File Uploaded At</th>
+    <th>Customer Response</th>
+    <th>Customer Response Date</th>
+    <th></th>
+  </tr>
+  <% document.document_assets.order("created_at DESC").each do |document_asset| %>
+    <tr>
+      <td><%=  document_asset.submittal_status.nil? ? "" : document_asset.submittal_status.name %></td>
+      <td><a href="<%= document_asset.asset_url %>" target="_blank"><%=get_file_from_url(document_asset) %></a></td>
+      <td><%= simple_date(document_asset.created_at) %></td>
+      <td></td>
+      <td></td>
+      <td><%= link_to "Edit", edit_project_document_document_asset_url(project, document, document_asset)  %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+
+<h3>Upload New Version</h3>
+<%= form_for [project, document, DocumentAsset.new] do |f| %>
+  <div class="fields">
+    <%= f.label :asset_url %>
+    <%= f.file_field :asset_url %>
+    <%= f.hidden_field :asset_url_cache %>
+  </div>
+  <div class="buttons">
+    <%= f.submit "Upload" %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Projects", company_admin_projects_url %> > <%= link_to "Project #{project.name}", company_admin_project_url(project) %> > Submittal Statuses</h1>
+  <div class="nav">
+    <%= link_to "New Submital Status", new_company_admin_project_submittal_status_url(project) %>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "company_admin/projects/project_sidebar" %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Color</th>
+    <th>Active</th>
+    <th></th>
+  </tr>
+  <% submittal_statuses.each do |submittal_status| %>
+    <tr style="background: <%= submittal_status.color %>">
+      <td><%= submittal_status.name %></td>
+      <td><%= submittal_status.color %></td>
+      <td><%= submittal_status.active %></td>
+      <td><%= link_to "Edit", edit_company_admin_project_submittal_status_url(project, submittal_status) %> <%= link_to "Delete", company_admin_project_submittal_status_url(project, submittal_status), :method => :delete, :confirm => "Are you sure you want to delete #{submittal_status.name}?" %></td>
+    </tr>
+  <% end  %>
+</table>
