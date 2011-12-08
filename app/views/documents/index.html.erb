@@ -9,14 +9,32 @@
   <%= render :partial => 'projects/project_sidebar' %>
 <% end %>
 
-<table>
+
+<%= form_tag project_documents_url(project), :method => :get do %>
+  <div class="search_area">
+    <h3>Search</h3>
+    <label>Project
+      Requirement</label> <%= select_tag("project_requirement_id", options_from_collection_for_select(project_requirements, :id, :name), {:include_blank => "Show All"}) %>
+    <div class="buttons">
+      <%= submit_tag "Search" %>
+    </div>
+  </div>
+<% end %>
+
+<table class="grid">
   <tr>
     <th>Name</th>
+    <th>Status</th>
+    <th>Customer Response Document</th>
     <th></th>
   </tr>
   <% documents.each do |document| %>
     <tr>
       <td><%= link_to document.name, project_document_url(project, document) %></td>
+      <td><%= document.current_document.nil? || document.current_document.submittal_status.nil? ? "" : document.current_document.submittal_status.name %></td>
+      <td>
+
+      </td>
       <td><%= link_to "Edit", edit_project_document_url(project, document) %> <%= link_to "Delete", project_document_url(project, document), :method => :delete, :confirm => "Are you sure you want to delete #{document.name}?" %></td>
     </tr>
   <% end %>

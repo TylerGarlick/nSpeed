@@ -26,8 +26,11 @@ header .navigation .submenu .submenu-section ul li {padding: 0px;}
 
 .flash {background: #009e16; color:white; text-align:center; font-size: 16px; font-weight: bold; padding: 10px;}
 .italic {font-style:italic;}
-tr:nth-child(even) td { background: #e7e7e7 !important; }
+.grid tr:nth-child(even) td { background: #e7e7e7 !important; }
+
 tr th {background: #005b7f; color:white;}
+
+.search_area {background: #e6e6e6; border: 1px solid #cdcdcd; margin-top: 10px; margin-bottom: 10px; padding: 10px;}
 
 // Fields
 .fields input[type="text"], .fields input[type="password"], .fields textarea {padding: 5px; font-size: 12px;}
@@ -51,7 +54,11 @@ tr th {background: #005b7f; color:white;}
   text-decoration: none;
   width: 100px;
   margin: 0 10px 0 0;
+  padding: 5px;
 }
+
+.buttons input[type="submit"]:hover, .buttons button:hover { background: #305b74; background-image: -ms-linear-gradient(top, #4585aa 0%, #305b74 100%); background-image: -o-linear-gradient(top, #4585aa 0%, #305b74 100%);
+  background-image: -webkit-linear-gradient(top, #4585aa 0%, #305b74 100%); background-image: linear-gradient(top, #4585aa 0%, #305b74 100%); color: #e6e6e6; }
 
 // Errors
 .errorExplanation {border: 5px solid #ae0000; padding: 15px; background: #ffd9d9; margin-bottom: 15px;}

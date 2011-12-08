@@ -9,7 +9,7 @@
 <h1><%= document.name %></h1>
 
 
-<table>
+<table class="nobackground">
   <tr>
     <th>Status</th>
     <th>File</th>
@@ -19,18 +19,20 @@
     <th></th>
   </tr>
   <% document.document_assets.order("created_at DESC").each do |document_asset| %>
-    <tr>
+    <tr style="background: <%= document_asset.submittal_status.nil? ? "": document_asset.submittal_status.color %>">
       <td><%=  document_asset.submittal_status.nil? ? "" : document_asset.submittal_status.name %></td>
-      <td><a href="<%= document_asset.asset_url %>" target="_blank"><%=get_file_from_url(document_asset) %></a></td>
+      <td><a href="<%= document_asset.asset_url %>" target="_blank"><%=get_file_from_url(document_asset.asset_url) %></a></td>
       <td><%= simple_date(document_asset.created_at) %></td>
-      <td></td>
-      <td></td>
+      <td>
+        <% if document_asset.customer_response_url.length > 0 %>
+          <a href="<%= document_asset.customer_response_url %>" target="_blank"><%=get_file_from_url(document_asset.customer_response_url) %></a>
+        <% end  %>
+      </td>
+      <td><%= simple_date_no_time(document_asset.customer_response_date) %></td>
       <td><%= link_to "Edit", edit_project_document_document_asset_url(project, document, document_asset)  %></td>
     </tr>
   <% end %>
 </table>
-
-
 
 <h3>Upload New Version</h3>
 <%= form_for [project, document, DocumentAsset.new] do |f| %>

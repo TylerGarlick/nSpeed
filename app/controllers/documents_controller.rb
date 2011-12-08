@@ -1,12 +1,24 @@
 class DocumentsController < ApplicationController
+  respond_to :html, :json
+
   expose(:project)
   expose(:project_requirements) {project.project_requirements}
   expose(:submittal_statuses) {project.submittal_statuses}
-  expose(:documents) {project.documents}
+  expose(:documents) {
+    if params[:project_requirement_id].nil? || params[:project_requirement_id].empty?
+      project.documents
+    else
+      ProjectRequirement.find(params[:project_requirement_id]).documents
+    end
+  }
   expose(:document)
 
 
   def index
+  end
+
+  def by_requirement
+    respond_with ProjectRequirement.find(params[:project_requirement_id]).documents.order(:name)
   end
 
   def show

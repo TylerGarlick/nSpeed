@@ -22,7 +22,7 @@ class DocumentAssetsController < ApplicationController
   end
 
   def update
-    if document_asset.update_parameters[:document_asset]
+    if document_asset.update_attributes(params[:document_asset])
       redirect_to project_document_path(project, document), :notice => "Document was saved successfully!"
     else
       redirect_to project_document_path(project, document), :notice => "There was an error saving the document, please try again"

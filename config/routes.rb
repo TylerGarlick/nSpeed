@@ -5,11 +5,11 @@ Nspeed::Application.routes.draw do
 
   resources :projects do
     resources :documents do
+      get 'by_requirement', :on => :collection
       resources :document_assets
     end
-
     resources :people
-    resource :submittal_logs
+    resources :submittals
   end
 
   resources :materials do

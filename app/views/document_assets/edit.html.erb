@@ -11,7 +11,7 @@
 <%= form_for [project, document, document_asset] do |f| %>
   <div class="fields">
     <label>Document Asset</label>
-    <a href="<%= document_asset.asset_url %>" target="_blank"><%=get_file_from_url(document_asset)  %></a>
+    <a href="<%= document_asset.asset_url %>" target="_blank"><%=get_file_from_url(document_asset.asset_url)  %></a>
   </div>
   <div class="fields">
     <%= f.label :submittal_status_id, "Submittal Status" %>
