@@ -8,4 +8,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jqModal
+//= require ./colorpicker/colorpicker
+//= require ./colorpicker/eye
+//= require ./colorpicker/utils
+//= require ./colorpicker/layout
 //= require_tree .

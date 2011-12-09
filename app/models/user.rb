@@ -13,19 +13,6 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_and_belongs_to_many :roles
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     login = conditions.delete(:login)

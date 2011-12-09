@@ -1,9 +1,24 @@
 class DocumentsController < ApplicationController
+  respond_to :html, :json
+
   expose(:project)
-  expose(:documents) {project.documents}
+  expose(:project_requirements) {project.project_requirements}
+  expose(:submittal_statuses) {project.submittal_statuses}
+  expose(:documents) {
+    if params[:project_requirement_id].nil? || params[:project_requirement_id].empty?
+      project.documents
+    else
+      ProjectRequirement.find(params[:project_requirement_id]).documents
+    end
+  }
   expose(:document)
 
+
   def index
+  end
+
+  def by_requirement
+    respond_with ProjectRequirement.find(params[:project_requirement_id]).documents.order(:name)
   end
 
   def show
@@ -15,7 +30,7 @@ class DocumentsController < ApplicationController
   def create
     project.documents << document
     if project.save
-      redirect_to project_documents_url, :notice => "Document was created successfully!"
+      redirect_to project_document_url, :notice => "Document was created successfully!"
     else
       render :new
     end
@@ -25,6 +40,8 @@ class DocumentsController < ApplicationController
   end
 
   def update
+    params[:document][:project_requirement_ids] ||= []
+
     if document.update_attributes(params[:document])
       redirect_to project_documents_url, :notice => "Document was updated successfully!"
     else
