@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :project_requirements
   has_many :prerequisites
   has_many :submittal_statuses
+  has_many :material_trackings
   has_and_belongs_to_many :people
   has_and_belongs_to_many :documents
 

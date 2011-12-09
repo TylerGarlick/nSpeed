@@ -8,6 +8,7 @@ Nspeed::Application.routes.draw do
       get 'by_requirement', :on => :collection
       resources :document_assets
     end
+    resources :material_trackings
     resources :people
     resources :submittals
   end

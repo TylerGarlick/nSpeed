@@ -5,13 +5,14 @@
 body{ background: #f0f0f0;}
 a {color: #005b7f;  display: inline-block; padding: 3px; text-decoration:none;}
 a:hover {background: #005b7f; color: white;}
-header { background: #252525; padding: 15px; height: 30px; }
+a.no-background:hover {background: transparent;}
+header { background: #555; padding: 15px; height: 20px; -moz-box-shadow: 0 0 5px #888; -webkit-box-shadow: 0 0 5px #888; box-shadow: 0 0 5px #888; }
 header nav a { color:white; display:inline-block; padding: 5px;}
 
 header .logo, header .projects-dropdown {float:left;}
 header .projects-dropdown {margin-left: 25px;}
 header .navigation {float: right; margin-right: 25px;}
-header .navigation ul {margin:0px; color:white; list-style:none; padding: 0px; }
+header .navigation ul {margin:0px; color:white; list-style:none; padding: 0px; margin-top: -10px; }
 header .navigation ul li {float: left; }
 header .navigation ul li:hover {float: left; background: #005b7f; }
 header .navigation ul li .submenu {display: none; position: absolute; background: #005b7f; padding: 20px; width: 280px; margin-left: -215px;}
