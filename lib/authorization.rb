@@ -1,6 +1,6 @@
 module Authorization
   
-  module User
+  module UserModule
     def is_super_admin?
       user_type == :super_admin
     end
