@@ -7,10 +7,11 @@ class User < ActiveRecord::Base
   symbolize :user_type, :in => [:super_admin, :company_admin, :user], :scopes => true
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :login, :password, :password_confirmation, :remember_me, :company, :user_type
+  attr_accessible :username, :email, :login, :password, :password_confirmation, :remember_me, :company, :user_type, :first_name, :last_name
   attr_accessor :login, :company
 
   belongs_to :company
+  has_and_belongs_to_many :roles
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

@@ -9,3 +9,16 @@
 <% content_for :sidebar do %>
   <%= render :partial => 'role_sidebar' %>
 <% end %>
+
+<table>
+  <tr>
+    <th>User Name</th>
+    <th></th>
+  </tr>
+  <% role.users.each do |user| %>
+    <tr>
+      <td><%= user.username %></td>
+      <td></td>
+    </tr>
+  <% end  %>
+</table>

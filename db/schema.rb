@@ -195,6 +195,8 @@ ActiveRecord::Schema.define(:version => 20111208181832) do
     t.datetime "updated_at"
   end
 
+  create_table "roles_users", :id => false, :force => true do |t|
+
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false

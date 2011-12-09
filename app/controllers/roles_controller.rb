@@ -28,11 +28,19 @@ class RolesController < AuthenticateUserController
   end
 
   def update
+    role.users = []
+    params[:userid].each do |id|
+      role.users << User.find(id)
+    end
     if role.update_attributes(params[:role])
       redirect_to company_admin_roles_url, :notice => "#{role.name} was updated successfully!"
     else
       render :edit
     end
+  end
+
+  def remove_user(user_id)
+    
   end
 
   def destroy
