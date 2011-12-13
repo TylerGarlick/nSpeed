@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208181832) do
+ActiveRecord::Schema.define(:version => 20111213163733) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20111208181832) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "customer_document_reference"
+    t.integer  "project_requirement_type_id"
     t.integer  "person_id"
     t.integer  "prerequisite_id"
   end
@@ -163,12 +164,25 @@ ActiveRecord::Schema.define(:version => 20111208181832) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
+  create_table "role_resources", :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "company_id"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
   end
 
   create_table "submittal_documents", :force => true do |t|
@@ -194,8 +208,6 @@ ActiveRecord::Schema.define(:version => 20111208181832) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "roles_users", :id => false, :force => true do |t|
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

@@ -8,6 +8,9 @@ class Document < ActiveRecord::Base
   has_many :submittal_documents
   has_many :documents, :through => :submittal_documents
 
+  has_many :role_resources, :as => :resource
+  has_many :roles, :through => :role_resources
+
   def current_document
     document_assets.order("created_at DESC").first
   end
