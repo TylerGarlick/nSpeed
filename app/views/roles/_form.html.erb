@@ -4,106 +4,12 @@
       <%= f.text_field :name %>
     </div>
 
-    <div style="position:relative;" id="user_select">
-    <input id="select_origin"/>
-    <input id="link_origin_id" name="link[origin_id]" type="hidden"/>
-    </div>
+    <%= intelligent_table("users", company_admin_users_url(:json), [:username], :username, role.users) %>
 
-    <table id='user_table' class='tablesorter'>
-      <thead>
-      <tr>
-        <th>User Name</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% role.users.each do |user| %>
-        <tr>
-          <td><input type="hidden" name="userid[]" value="<%= user.id %>" /><%= user.username %></td>
-          <td class='remove'><button type='button'>Remove</button></td>
-        </tr>
-      <% end  %>
-      </tbody>
-    </table>
+
 
     <div class="buttons">
       <%= f.submit role.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", company_admin_roles_url %>
     </div>
 <% end  %>
 
-<script type="text/javascript">
-  function sortTable(){
-      $('#user_table').tablesorter({sortList: [[0,0]]});
-  }
-  function showMessage(msg,duration) {
-      var $msg = $('<div />');
-      $msg.css({
-         position: 'absolute',
-          top:0,
-          left:300
-      });
-      $msg.html(msg);
-      $msg.appendTo('#user_select');
-      setTimeout(function() {
-          $msg.fadeOut();
-      }, duration);
-
-  }
-$(function() {
-
-    sortTable();
-    // Below is the name of the textfield that will be autocomplete
-    $('#select_origin').autocomplete({
-        // This shows the min length of charcters that must be typed before the autocomplete looks for a match.
-        minLength: 2,
-        // This is the source of the auocomplete suggestions. In this case a list of names from the people controller, in JSON format.
-        source: '<%= company_admin_users_url(:json) %>',
-        // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the person.given_name.
-        focus: function(event, ui) {
-            $('#select_origin').val(ui.item.username);
-            return false;
-        },
-        // Once a value in the drop down list is selected, do the following:
-        select: function(event, ui) {
-            console.log(ui.item);
-                if ($('#user_table input[name="userid[]"][value='+ui.item.id+']').length == 0) {
-
-                    // place the person.given_name value into the textfield called 'select_origin'...
-                    $('#select_origin').val(ui.item.username);
-                    // and place the person.id into the hidden textfield called 'link_origin_id'.
-                    $('#link_origin_id').val(ui.item.id);
-                    var $userCell = $('<td />').text(ui.item.username).append('<input type="hidden" name="userid[]" value="'+ui.item.id+'" />');
-                    var $newRow = $("<tr><td class='remove'><button type='button'>Remove</button></td></tr>");
-                    $newRow.prepend($userCell);
-                    $('#user_table').append($newRow);
-                    //sortTable();
-                } else {
-                    showMessage("User: "+ui.item.username+" already added", 2000);
-                }
-
-            return false;
-        }
-    })
-    // The below code is straight from the jQuery example. It formats what data is displayed in the dropdown box, and can be customized.
-    .data( "autocomplete" )._renderItem = function( ul, item ) {
-        if ($('#user_table input[name="userid[]"][value='+item.id+']').length == 0) {
-
-        return $( "<li></li>" )
-            .data( "item.autocomplete", item )
-            // For now which just want to show the person.given_name in the list.
-            .append( "<a>" + item.username + "</a>" )
-            .appendTo( ul );
-        }
-    };
-    $(".remove button").live('click', function(event){
-        event.preventDefault();
-        $(this).closest('tr').remove();
-    });
-    $('#select_origin').keydown(function(evt) {
-       if( evt.which == 13 ) {
-           evt.preventDefault();
-       }
-    });
-});
-
-</script>

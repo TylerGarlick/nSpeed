@@ -29,8 +29,10 @@ class RolesController < AuthenticateUserController
 
   def update
     role.users = []
-    params[:userid].each do |id|
-      role.users << User.find(id)
+    unless params["users_id"].nil?
+      params["users_id"].each do |id|
+        role.users << User.find(id)
+      end
     end
     if role.update_attributes(params[:role])
       redirect_to company_admin_roles_url, :notice => "#{role.name} was updated successfully!"
