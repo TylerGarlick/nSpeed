@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213163733) do
+ActiveRecord::Schema.define(:version => 20111215234848) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20111213163733) do
     t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mode"
   end
 
   create_table "roles", :force => true do |t|
