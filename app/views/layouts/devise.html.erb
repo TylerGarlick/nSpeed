@@ -2,12 +2,13 @@
 <html>
 <head>
   <title>nSpeed</title>
-  <%= stylesheet_link_tag "application" %>
+
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" %>
   <%= stylesheet_link_tag '/stylesheets/blueprint/screen', "/stylesheets/blueprint/plugins/fancy-type/screen", "/stylesheets/blueprint/plugins/buttons/screen", :media => 'screen, projection' %>
   <!--[if lt IE 8]>
     <%= stylesheet_link_tag '/stylesheets/blueprint/ie', :media => 'screen, projection' %>
   <![endif]-->
+  <%= stylesheet_link_tag "login" %>
 
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -17,7 +18,9 @@
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}", :class => 'flash' %>
 <% end %>
-<%= yield %>
+<div class="login">
+  <%= yield %>
+</div>
 <%= yield :javascript %>
 </body>
 </html>

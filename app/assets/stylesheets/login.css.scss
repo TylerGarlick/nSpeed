@@ -1,0 +1,52 @@
+body {
+  background: black;
+}
+
+.bold-font {
+  font-weight: bold;
+}
+
+.flash {
+  background: red;
+  color:white;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+
+.fields {
+  margin-bottom: 5px;
+
+  label {
+    display: block;
+  }
+
+
+}
+
+.login {
+  width:300px;
+  background: #cdcdcd;
+  margin: 0 auto;
+  margin-top: 20%;
+  padding: 20px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+
+  font-weight: normal;
+  -webkit-font-smoothing: subpixel-antialiased;
+  color: black;
+
+
+  h2 {
+  }
+
+  input[type="text"], input[type="password"] {
+    padding: 7px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width:95%;
+  }
+
+}
+
