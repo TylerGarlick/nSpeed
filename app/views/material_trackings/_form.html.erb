@@ -1,0 +1,22 @@
+<%= form_for [project, material_tracking] do |f|%>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :document_id %>
+    <%= f.collection_select(:document_id, documents, :id, :name)%>
+  </div>
+
+  <div class="buttons">
+    <%= f.submit material_tracking.new_record? ? "Create" : "Update" %>
+    <%= link_to "Cancel", project_material_trackings_url(project) %>
+  </div>
+
+<% end %>
