@@ -37,16 +37,11 @@ body {
   -webkit-font-smoothing: subpixel-antialiased;
   color: black;
 
+}
 
-  h2 {
-  }
-
-  input[type="text"], input[type="password"] {
+.login input[type="text"], .login input[type="password"] {
     padding: 7px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     width:95%;
-  }
-
 }
-
