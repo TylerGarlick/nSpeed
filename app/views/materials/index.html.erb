@@ -1,0 +1,37 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Project #{project.name}", project_url(project) %> > Materials</h1>
+  <div class="nav">
+    <%= link_to "New Material", new_project_material_url(project) %>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'projects/project_sidebar' %>
+<% end %>
+
+
+<%= form_tag project_materials_url(project), :method => :get do %>
+  <div class="search_area">
+    <%= search_field_tag :query, params[:value] %>
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+<table class="grid">
+  <tr>
+    <th>Name</th>
+    <th>Heat Number</th>
+    <th>Quantity</th>
+    <th>Vendor</th>
+    <th></th>
+  </tr>
+  <% materials.each do |material| %>
+    <tr>
+      <td><%= link_to material.name, project_material_url(project, material) %></td>
+      <td><%= material.heat_number %></td>
+      <td><%= material.quantity %></td>
+      <td><%= material.vendor %></td>
+      <td><%= link_to "Edit", edit_project_material_url(project, material) %> <%= link_to "Delete", project_material_url(project, material), :method => :delete, :confirm => "Are you sure you want to delete #{material.name}?" %></td>
+    </tr>
+  <% end %>
+</table>

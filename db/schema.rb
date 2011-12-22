@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111215234848) do
+ActiveRecord::Schema.define(:version => 20111222054746) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -54,39 +54,33 @@ ActiveRecord::Schema.define(:version => 20111215234848) do
     t.integer "project_id"
   end
 
-  create_table "material_tracking_items", :force => true do |t|
-    t.integer  "material_tracking_id"
-    t.integer  "user_id"
-    t.integer  "item_number"
-    t.string   "material"
-    t.text     "description"
-    t.integer  "quantity"
-    t.datetime "verified_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "material_trackings", :force => true do |t|
-    t.integer  "project_id"
-    t.string   "name"
-    t.text     "description"
+  create_table "material_invoices", :force => true do |t|
+    t.integer  "material_id"
     t.integer  "document_id"
+    t.integer  "line_item"
+    t.integer  "quantity_ordered"
+    t.integer  "quantity_received"
+    t.datetime "checked_on"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "materials", :force => true do |t|
-    t.integer  "company_id"
     t.string   "name"
     t.string   "heat_number"
-    t.string   "n_number"
-    t.string   "ancestry"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_id"
+    t.integer  "document_id"
+    t.integer  "item_number"
+    t.integer  "quantity"
+    t.string   "vendor"
+    t.text     "description"
+    t.string   "astm_number"
+    t.string   "material_tracking_number"
   end
-
-  add_index "materials", ["ancestry"], :name => "index_materials_on_ancestry"
 
   create_table "people", :force => true do |t|
     t.integer  "company_id"
@@ -125,7 +119,6 @@ ActiveRecord::Schema.define(:version => 20111215234848) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "customer_document_reference"
-    t.integer  "project_requirement_type_id"
     t.integer  "person_id"
     t.integer  "prerequisite_id"
   end

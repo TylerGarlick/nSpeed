@@ -1,0 +1,37 @@
+<%= form_for [project, material], :validate => true do |f| %>
+  <%= f.error_messages %>
+
+  <div class="fields">
+    <%= f.label :document_id %>
+    <%= f.collection_select :document_id, documents, :id, :name %>
+  </div>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :item_number %>
+    <%= f.text_field :item_number %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :quantity %>
+    <%= f.text_field :quantity %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :vendor %>
+    <%= f.text_field :vendor %>
+  </div>
+
+
+  <div class="buttons">
+    <%= f.submit material.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", project_materials_url(project) %>
+  </div>
+<% end %>

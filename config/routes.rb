@@ -8,13 +8,9 @@ Nspeed::Application.routes.draw do
       get 'by_requirement', :on => :collection
       resources :document_assets
     end
-    resources :material_trackings
+    resources :materials
     resources :people
     resources :submittals
-  end
-
-  resources :materials do
-    get 'related_materials'
   end
 
   namespace :admin do

@@ -1,0 +1,12 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Project #{project.name}", project_url(project) %>
+    > <%= link_to "Materials", project_materials_url(project) %></h1>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'projects/project_sidebar' %>
+<% end %>
+
+<h1>New Material</h1>
+
+<%= render :partial => 'form' %>
