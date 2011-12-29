@@ -15,7 +15,6 @@
 <% end %>
 
 <header>
-
   <div class="logo"><%= link_to image_tag("logo.png"), root_url, :class => "no-background" %></div>
   <div class="projects-dropdown">
     <select id="projects">
@@ -26,7 +25,6 @@
         <% end %>
       </optgroup>
       <optgroup label="Shared Projects">
-
       </optgroup>
     </select>
   </div>
@@ -69,7 +67,6 @@
       </td>
     </tr>
   </table>
-
 </article>
 
 <script>
@@ -80,9 +77,7 @@
         window.location = "/projects/" + option.val();
       }
     });
-
     $('.flash').delay(2000).slideUp();
-
   });
 </script>
 <%= yield :javascript %>

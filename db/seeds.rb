@@ -17,3 +17,8 @@ rodger = User.create!(:email => 'rogerabell@gmail.com', :password => 'password',
 #add people
 Person.create!(:first_name => 'Bob', :last_name => "Smith", :email => "bob@smith.com", :company => nspeed, :active => true)
 Person.create!(:first_name => 'Matt', :last_name => "Wilson", :email => "matt@smithinghouse.com", :company => nspeed, :active => true)
+
+#documenttypes
+DocumentType.create!(:name => 'Invoice')
+DocumentType.create!(:name => 'Weld Map')
+DocumentType.create!(:name => 'Project Document')

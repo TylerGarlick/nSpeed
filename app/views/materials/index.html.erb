@@ -19,6 +19,7 @@
 
 <table class="grid">
   <tr>
+    <th>Item #</th>
     <th>Name</th>
     <th>Documents</th>
     <th>Heat Number</th>
@@ -26,14 +27,21 @@
     <th>Vendor</th>
     <th></th>
   </tr>
-  <% materials.each do |material| %>
+  
+  <% documents.each do |document| %>
     <tr>
-      <td><%= link_to material.name, project_material_url(project, material) %></td>
-      <td></td>
-      <td><%= material.heat_number %></td>
-      <td><%= material.quantity %></td>
-      <td><%= material.vendor %></td>
-      <td><%= link_to "Edit", edit_project_material_url(project, material) %> <%= link_to "Delete", project_material_url(project, material), :method => :delete, :confirm => "Are you sure you want to delete #{material.name}?" %></td>
+      <th colspan="7">Document:  <%= document.name %></th>
     </tr>
+    <% document.materials.each do |material| %>
+      <tr>
+        <td><%= material.item_number %></td>
+        <td><%= link_to material.name, project_material_url(project, material) %></td>
+        <td><%= material.document.name %></td>
+        <td><%= material.heat_number %></td>
+        <td><%= material.quantity %></td>
+        <td><%= material.vendor %></td>
+        <td><%= link_to "Edit", edit_project_material_url(project, material) %> <%= link_to "Delete", project_material_url(project, material), :method => :delete, :confirm => "Are you sure you want to delete #{material.name}?" %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>

@@ -21,6 +21,11 @@
   </div>
 
   <div class="fields">
+    <%= f.label :heat_number %>
+    <%= f.text_field :heat_number %>
+  </div>
+
+  <div class="fields">
     <%= f.label :quantity %>
     <%= f.text_field :quantity %>
   </div>
@@ -29,8 +34,6 @@
     <%= f.label :vendor %>
     <%= f.text_field :vendor %>
   </div>
-
-
   <div class="buttons">
     <%= f.submit material.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", project_materials_url(project) %>
   </div>

@@ -4,6 +4,7 @@ class DocumentsController < ApplicationController
   expose(:project)
   expose(:project_requirements) {project.project_requirements}
   expose(:submittal_statuses) {project.submittal_statuses}
+  expose(:document_types) {DocumentType.all}
   expose(:documents) {
     if params[:project_requirement_id].nil? || params[:project_requirement_id].empty?
       project.documents
@@ -30,7 +31,7 @@ class DocumentsController < ApplicationController
   def create
     project.documents << document
     if project.save
-      redirect_to project_document_url, :notice => "Document was created successfully!"
+      redirect_to project_documents_url(project), :notice => "Document was created successfully!"
     else
       render :new
     end
@@ -43,7 +44,7 @@ class DocumentsController < ApplicationController
     params[:document][:project_requirement_ids] ||= []
 
     if document.update_attributes(params[:document])
-      redirect_to project_documents_url, :notice => "Document was updated successfully!"
+      redirect_to project_documents_url(project), :notice => "Document was updated successfully!"
     else
       render :edit
     end
@@ -51,6 +52,6 @@ class DocumentsController < ApplicationController
 
   def destroy
     document.destroy?
-    redirect_to project_documents_url, :notice => "Document was deleted successfully!"
+    redirect_to project_documents_url(project), :notice => "Document was deleted successfully!"
   end
 end
