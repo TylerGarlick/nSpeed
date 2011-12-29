@@ -20,6 +20,7 @@
 <table class="grid">
   <tr>
     <th>Name</th>
+    <th>Documents</th>
     <th>Heat Number</th>
     <th>Quantity</th>
     <th>Vendor</th>
@@ -28,6 +29,7 @@
   <% materials.each do |material| %>
     <tr>
       <td><%= link_to material.name, project_material_url(project, material) %></td>
+      <td></td>
       <td><%= material.heat_number %></td>
       <td><%= material.quantity %></td>
       <td><%= material.vendor %></td>

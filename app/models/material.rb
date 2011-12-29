@@ -5,7 +5,7 @@ class Material < ActiveRecord::Base
   has_many :material_invoices
   
 
-  validates_presence_of :name, :project_id
+  validates_presence_of :name, :project_id, :document_id
   validates_numericality_of :item_number, :quantity
 
   scope :active_materials, where(:active => true)
