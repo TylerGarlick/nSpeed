@@ -5,8 +5,8 @@
   </div>
 
   <div class="fields">
-    <%= f.label :document_type_id %>
-    <%= f.collection_select :document_type_id, document_types, :id, :name %>
+    <%= f.label :document_type %>
+    <%= f.select :document_type, Document.get_document_type_values %>
   </div>
 
   <div class="fields">

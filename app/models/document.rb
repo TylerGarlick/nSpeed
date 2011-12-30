@@ -1,7 +1,7 @@
 class Document < ActiveRecord::Base
   after_initialize :init
 
-  belongs_to :document_type
+  symbolize :document_type, :in => {:invoice => "Invoice", :weld_map => "Weld Map" , :project_document => "Project Document", :certification => "Certification"}, :scopes => true, :methods => true, :i18n => false
 
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :project_requirements

@@ -11,6 +11,12 @@ module ApplicationHelper
     end
   end
 
+  def document_type_name(document_type)
+    unless document_type.blank?
+      Document.get_document_type_values[Document.get_document_type_values.index { |d| d[1] == document_type }][0]
+    end
+  end
+
   def user_can_read_resource?(user, resource)
     user_can_access_resource?(user, resource, :read)
   end

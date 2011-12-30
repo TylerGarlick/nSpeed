@@ -16,27 +16,36 @@
     <%= submit_tag "Search" %>
   </div>
 <% end %>
-
 <table class="grid">
   <tr>
+    <th>
+      <div class="action-menu">
+        <input type="checkbox" class="select-all" />
+        <div class="arrow"></div>
+        <div class="menu">
+          <ul>
+            <li><a href="#" class="order_it">Order</a></li>
+            <li>Item 2</li>
+          </ul>
+        </div>
+      </div>
+    </th>
     <th>Item #</th>
     <th>Name</th>
-    <th>Documents</th>
     <th>Heat Number</th>
     <th>Quantity</th>
     <th>Vendor</th>
     <th></th>
   </tr>
-  
   <% documents.each do |document| %>
     <tr>
-      <th colspan="7">Document:  <%= document.name %></th>
+      <th colspan="8" class="document-header">Document:  <%= link_to document.name, project_document_url(project, document) %></th>
     </tr>
-    <% document.materials.each do |material| %>
+    <% document.materials.order(:item_number).each do |material| %>
       <tr>
+        <td><input type="checkbox" class="checkbox" value="<%= material.id %>" /></td>
         <td><%= material.item_number %></td>
         <td><%= link_to material.name, project_material_url(project, material) %></td>
-        <td><%= material.document.name %></td>
         <td><%= material.heat_number %></td>
         <td><%= material.quantity %></td>
         <td><%= material.vendor %></td>
@@ -44,4 +53,29 @@
       </tr>
     <% end %>
   <% end %>
+  <tr>
+    <th></th>
+    <th>Item #</th>
+    <th>Name</th>
+    <th>Heat Number</th>
+    <th>Quantity</th>
+    <th>Vendor</th>
+    <th></th>
+  </tr>
 </table>
+
+<div class="modal jqmWindow">
+  <h2>Order Materials</h2>
+
+</div>
+
+<script>
+  $(function(){
+    $(".select-all").change(function(){
+      $(".checkbox").attr('checked', $(".select-all").is(':checked'));
+    });
+    $(".order_it").click(function(){
+      $(".modal").jqmShow();
+    });
+  });
+</script>

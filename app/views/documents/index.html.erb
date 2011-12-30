@@ -32,7 +32,7 @@
   <% documents.each do |document| %>
     <tr>
       <td><%= link_to document.name, project_document_url(project, document) %></td>
-      <td><%= document.document_type.name if document.document_type %></td>
+      <td><%= document_type_name(document.document_type)  %></td>
       <td><%= document.current_document.nil? || document.current_document.submittal_status.nil? ? "" : document.current_document.submittal_status.name %></td>
       <td>
 

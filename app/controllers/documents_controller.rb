@@ -4,7 +4,6 @@ class DocumentsController < ApplicationController
   expose(:project)
   expose(:project_requirements) {project.project_requirements}
   expose(:submittal_statuses) {project.submittal_statuses}
-  expose(:document_types) {DocumentType.all}
   expose(:documents) {
     if params[:project_requirement_id].nil? || params[:project_requirement_id].empty?
       project.documents
@@ -42,7 +41,6 @@ class DocumentsController < ApplicationController
 
   def update
     params[:document][:project_requirement_ids] ||= []
-
     if document.update_attributes(params[:document])
       redirect_to project_documents_url(project), :notice => "Document was updated successfully!"
     else
