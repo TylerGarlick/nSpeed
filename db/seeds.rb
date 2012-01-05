@@ -18,6 +18,11 @@ mox = ProjectType.create!(name: "MOX", company: nspeed)
 asme = ProjectType.create!(name: "ASME Sec. III", company: nspeed)
 section_8 = ProjectType.create!(name: "Sec. VIII", company: nspeed)
 
+# Material Statuses
+MaterialStatus.create!(name: "Entered", active: true)
+MaterialStatus.create!(name: "Ordered", active: true)
+MaterialStatus.create!(name: "Received", active: true)
+
 # Customers
 trans_nuclear = Customer.create(name: "TransNuclear", company: nspeed)
 mox = Customer.create(name: "Mox", company: nspeed)
