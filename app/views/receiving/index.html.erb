@@ -1,0 +1,47 @@
+<% content_for :titlebar do %>
+  <h1>Receiving Log</h1>
+<% end %>
+
+<div class="search_area">
+  <label>Material Status</label> <%= select_tag("material_status_id", options_from_collection_for_select(material_statuses, :id, :name,  :selected => params[:material_status_id])) %>
+</div>
+<table>
+  <tr>
+    <th>Project</th>
+    <th>Material</th>
+    <th>Status</th>
+    <th>Qty Ordered</th>
+    <th>Qty Received</th>
+    <th></th>
+  </tr>
+  <% materials.each do |material| %>
+    <tr>
+      <td><%= link_to material.project.name, project_url(material.project) %></td>
+      <td><%= link_to material.name, project_material_url(material.project, material) %></td>
+      <td><%= material.material_status.name %></td>
+      <td><%= material.quantity_ordered %></td>
+      <td><%= material.quantity_received %></td>
+      <td>
+        <% if material.material_status == MaterialStatus.find_by_name("Entered") %>
+          <%= link_to "Order", edit_receiving_url(material) %>
+        <% elsif material.material_status == MaterialStatus.find_by_name("Ordered") %>
+          <%= link_to "Receive", edit_receiving_url(material) %>
+        <% else  %>
+          <%= link_to "Edit", edit_receiving_url(material) %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+
+<script type="text/javascript">
+  $(function(){
+    $("#material_status_id").change(function() {
+      var option = $(this);
+      if (option.val() !== null && option.val().length > 0) {
+        window.location = "<%= receiving_index_url %>?material_status_id=" + option.val();
+      }
+    });
+  });
+</script>

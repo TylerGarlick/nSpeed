@@ -10,8 +10,10 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :login, :password, :password_confirmation, :remember_me, :company, :user_type, :first_name, :last_name
   attr_accessor :login, :company
 
+  has_many :submittals
   belongs_to :company
   has_and_belongs_to_many :roles
+
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

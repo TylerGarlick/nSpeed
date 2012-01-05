@@ -3,12 +3,15 @@ Nspeed::Application.routes.draw do
 
   devise_for :users
 
+  resources :receiving
   resources :projects do
     resources :documents do
       get 'by_requirement', :on => :collection
       resources :document_assets
     end
-    resources :materials
+    resources :materials do
+      resources :material_invoices
+    end
     resources :people
     resources :submittals
   end

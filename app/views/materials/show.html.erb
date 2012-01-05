@@ -1,18 +1,39 @@
 <% content_for :titlebar do %>
   <h1><%= link_to "Project #{project.name}", project_url(project) %>
-    > <%= link_to "Materials", project_materials_url(project) %> > <%=  material.name %></h1>
+    > <%= link_to "Materials", project_materials_url(project) %> > <%= material.name %></h1>
 <% end %>
 
 <% content_for :sidebar do %>
-  <h2>Material Related</h2>
-  <div class="sidebar-section">
-    <ul>
-      <li><%= link_to "Invoices", project_documents_url(project) %></li>
-    </ul>
-  </div>
-
   <%= render :partial => 'projects/project_sidebar' %>
 <% end %>
 
-<h1><%= material.name %></h1>
-<p><%= material.description %></p>
+<div class="material">
+  <h1>
+    <%= material.name %>
+    <% unless material.material_tracking_number.blank? %>
+      > <%= material.material_tracking_number %>
+    <% end %>
+  </h1>
+
+  <div>Current
+    Status:  <%= link_to material.material_status.name, receiving_index_url(:material_status_id => material.material_status) %></div>
+  <div>Document:  <%= link_to material.document.name, project_document_url(project, material.document) %></div>
+  <% unless material.invoice_url.blank? %>
+    <div>Invoice:  <%= link_to get_file_from_url(material.invoice_url), material.invoice_url %></div>
+  <% end %>
+  <div><%= material.description %></div>
+  <div>Heat Number:  <%= material.heat_number %></div>
+  <div>Quantity Needed for Project:  <%= material.quantity %></div>
+
+
+
+  <h3>Ordered</h3>
+
+  <div>Quantity Ordered:  <%= material.quantity_ordered %></div>
+  <div>Date Ordered:  <%= simple_date(material.ordered_date) %></div>
+
+  <h3>Received</h3>
+
+  <div>Quantity Received:  <%= material.quantity_ordered %></div>
+  <div>Date Ordered:  <%= simple_date(material.received_date) %></div>
+</div>

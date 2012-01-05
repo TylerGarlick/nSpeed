@@ -11,6 +11,10 @@ module ApplicationHelper
     end
   end
 
+  def get_file_from_url(url)
+    url.to_s.split('/').last
+  end
+
   def document_type_name(document_type)
     unless document_type.blank?
       Document.get_document_type_values[Document.get_document_type_values.index { |d| d[1] == document_type }][0]

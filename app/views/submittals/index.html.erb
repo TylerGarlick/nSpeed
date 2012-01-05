@@ -23,10 +23,21 @@
 
 <table class="grid">
   <tr>
-    <th>Name</th>
-    <th>Status</th>
-    <th>Customer Response Document</th>
-    <th></th>
+    <th>Customer Document</th>
+    <th>Documents</th>
+    <th>Date</th>
   </tr>
-
+  <% submittals.each do |submittal| %>
+    <tr>
+      <td><%= link_to get_file_from_url(submittal.customer_document.url), submittal.customer_document.url %></td>
+      <td>
+        <ul>
+          <% submittal.submittal_documents.each do |sub_doc| %>
+            <li><%= link_to sub_doc.document.name, project_document_url(project, sub_doc.document) %></li>
+          <% end %>
+        </ul>
+      </td>
+      <td><%= simple_date(submittal.created_at) %></td>
+    </tr>
+  <% end %>
 </table>

@@ -1,0 +1,2 @@
+class MaterialInvoicesController < ApplicationController
+end

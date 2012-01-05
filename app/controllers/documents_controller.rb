@@ -3,6 +3,7 @@ class DocumentsController < ApplicationController
 
   expose(:project)
   expose(:project_requirements) {project.project_requirements}
+  expose(:document_types) {DocumentType.all}
   expose(:submittal_statuses) {project.submittal_statuses}
   expose(:documents) {
     if params[:project_requirement_id].nil? || params[:project_requirement_id].empty?
@@ -18,7 +19,7 @@ class DocumentsController < ApplicationController
   end
 
   def by_requirement
-    respond_with ProjectRequirement.find(params[:project_requirement_id]).documents.order(:name)
+    respond_with ProjectRequirement.find(params[:project_requirement_id]).documents.joins("left outer join document_assets  on document_assets.document_id = documents.id").where("document_assets.submittal_status_id is null").order(:name)
   end
 
   def show

@@ -24,6 +24,7 @@ class SubmittalsController < ApplicationController
   end
 
   def create
+    submittal.user = current_user
     if submittal.save
       redirect_to project_submittals_url(project), :notice => "Submittal was created successfully!"
     else

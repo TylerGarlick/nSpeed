@@ -2,6 +2,7 @@ class MaterialsController < ApplicationController
   expose(:project)
   expose(:company) { current_user.company }
   expose(:documents) { project.documents.where(document_type_id: DocumentType.find_by_name("Weld Map").id) }
+  expose(:material_statuses) {company.material_statuses}
   expose(:materials) {
     if params[:query].nil? || params[:query].empty?
       project.materials.active_materials
