@@ -2,7 +2,7 @@ class MaterialsController < ApplicationController
   expose(:project)
   expose(:company) { current_user.company }
   expose(:documents) { project.documents.where(document_type_id: DocumentType.find_by_name("Weld Map").id) }
-  expose(:material_statuses) {company.material_statuses}
+  expose(:material_statuses) {MaterialStatus.all}
   expose(:materials) {
     if params[:query].nil? || params[:query].empty?
       project.materials.active_materials
@@ -25,6 +25,7 @@ class MaterialsController < ApplicationController
   end
 
   def create
+    material.material_status = MaterialStatus.find_by_name("Entered")
     if material.save
       redirect_to project_materials_url(project), :notice => "#{material.name} was created successfully"
     else

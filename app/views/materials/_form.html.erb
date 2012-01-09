@@ -6,10 +6,6 @@
     <%= f.collection_select :document_id, documents, :id, :name %>
   </div>
   <div class="fields">
-    <%= f.label :material_status_id %>
-    <%= f.collection_select :material_status_id, material_statuses, :id, :name %>
-  </div>
-  <div class="fields">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
@@ -25,8 +21,8 @@
   </div>
 
   <div class="fields">
-    <%= f.label :heat_number %>
-    <%= f.text_field :heat_number %>
+    <%= f.label :astm_number, "ASTM #" %>
+    <%= f.text_field :astm_number %>
   </div>
 
   <div class="fields">
