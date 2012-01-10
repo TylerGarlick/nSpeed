@@ -12,7 +12,6 @@ Nspeed::Application.routes.draw do
     resources :materials do
       resources :material_invoices
     end
-    resources :people
     resources :submittals
   end
 
@@ -37,7 +36,6 @@ Nspeed::Application.routes.draw do
     end
     resources :customers
     resources :project_types
-    resources :people
     resources :roles
     resources :users
   end
