@@ -1,4 +1,15 @@
 module ApplicationHelper
+  def user_type_name(user_type)
+    case user_type
+      when :super_admin
+        "Super Admin"
+      when :company_admin
+        "Company Admin"
+      else
+        "User"
+    end
+  end
+
   def simple_date(date)
     unless date.nil?
       date.localtime.strftime('%m/%d/%Y %I:%M %p')

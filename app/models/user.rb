@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  symbolize :user_type, :in => [:super_admin, :company_admin, :user], :scopes => true
+  symbolize :user_type, :in => {:super_admin => "Super Admin", :company_admin => "Company Admin", :user => "User"}, :scopes => true, :i18n => false
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :login, :password, :password_confirmation, :remember_me, :company, :user_type, :first_name, :last_name
@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   has_many :submittals
   belongs_to :company
   has_and_belongs_to_many :roles
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
 
   def self.find_for_database_authentication(warden_conditions)
