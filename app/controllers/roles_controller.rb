@@ -29,8 +29,8 @@ class RolesController < AuthenticateUserController
 
   def update
     role.users = []
-    unless params["users_id"].nil?
-      params["users_id"].each do |id|
+    unless params["table_users_field_id"].nil?
+      params["table_users_field_id"].each do |id|
         role.users << User.find(id)
       end
     end

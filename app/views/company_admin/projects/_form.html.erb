@@ -27,6 +27,23 @@
     <%= f.label :is_active, "Active" %>
     <%= f.check_box :is_active %>
   </div>
+  <div id="roles_table" >
+    <%= f.label :roles_field, "Roles" %>
+  </div>
+
+    <script>
+      $("#roles_table").completable_table({
+          url:function() {
+              return "<%= company_admin_project_roles_url(project,:json) %>";
+          },
+          id:"roles_field",
+          heading:["name", "mode"],
+          search:"name",
+          combos:{'mode':['read','write']},
+          values: <%= raw(RoleResource.includes(:role).where(:resource_type => project.class).map{|x| {:id => x.role.id, :name => x.role.name, :mode => x.mode}}.to_json) %>
+      })
+    </script>
+
   <div class="buttons">
     <%= f.submit project.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", company_admin_projects_url %>
   </div>

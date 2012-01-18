@@ -1,8 +1,9 @@
 class Role < ActiveRecord::Base
   belongs_to :company
   has_and_belongs_to_many :users
+
   has_many :role_resources, :dependent => :destroy
-  has_many :documents, :through => :role_resources, :source => :resource, :source_type => "Document"
+  has_many :projects, :through => :role_resources, :source => :resource, :source_type => "Project"
 
   
 

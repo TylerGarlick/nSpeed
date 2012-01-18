@@ -4,7 +4,21 @@
       <%= f.text_field :name %>
     </div>
 
-    <%= intelligent_table("users", company_admin_users_url(:json), [:username], :username, role.users) %>
+    <div id="users_table" >
+      <%= f.label :users_field, "Username" %>
+    </div>
+
+      <script>
+        $("#users_table").completable_table({
+            url:function() {
+                return "<%= company_admin_users_url(:json) %>";
+            },
+            id:"users_field",
+            heading:["username"],
+            search:"username",
+            values: <%= raw(role.users.map{|x| {:id => x.id, :username => x.username}}.to_json) %>
+        })
+      </script>
 
 
 
