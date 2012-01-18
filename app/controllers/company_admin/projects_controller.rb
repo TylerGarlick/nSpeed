@@ -28,7 +28,24 @@ class CompanyAdmin::ProjectsController < ApplicationController
   end
 
   def update
-    if project.update_attributes(params[:project])
+
+    project_id = project.id # save for later
+    result = false
+    project.transaction do
+      project.roles = []
+      RoleResource.where(:resource_id => project).where(:resource_type => 'Project').delete_all
+      unless params["table_roles_field_id"].nil?
+        i = 0
+        while i < params["table_roles_field_id"].length do
+          RoleResource.create(:role_id => params["table_roles_field_id"][i], :mode => params["table_roles_field_mode"][i], :resource_id => project.id, :resource_type => "Project")
+          i += 1
+        end
+      end
+      result = project.update_attributes(params[:project])
+    end
+
+    project = Project.find(project_id) # refresh the roles
+    if result
       redirect_to company_admin_projects_url, :notice => "Project #{project.name} was updated successfully!"
     else
       render :new
@@ -38,4 +55,19 @@ class CompanyAdmin::ProjectsController < ApplicationController
   def destroy
     
   end
+
+
+  def roles
+    if params[:term]
+      # TODO: This needs to limit the query to only roles within the company
+      @roles = Role.find(:all,:conditions => ['name LIKE ?', "%#{params[:term]}%"]).map{|x| {:id => x.id, :name => x.name, :mode => :read}}
+    else
+      @roles = Role.all
+    end
+
+    respond_to do |format|
+      format.json { render :json => @roles.to_json(:only =>[:id, :name, :mode]) }
+    end
+  end
+
 end

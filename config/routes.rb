@@ -35,6 +35,7 @@ Nspeed::Application.routes.draw do
           delete 'remove'
         end
       end
+      get 'roles'
     end
     resources :customers
     resources :project_types
