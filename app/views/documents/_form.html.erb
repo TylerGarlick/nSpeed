@@ -5,6 +5,11 @@
   </div>
 
   <div class="fields">
+    <%= f.label :document_type_id %>
+    <%= f.collection_select :document_type_id, document_types, :id, :name %>
+  </div>
+
+  <div class="fields">
     <h3>Project Requirements</h3>
     <% project_requirements.each do |project_requirement| %>
       <div>

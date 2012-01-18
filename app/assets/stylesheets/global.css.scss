@@ -29,6 +29,18 @@ header .navigation .submenu .submenu-section ul li {padding: 0px;}
 .italic {font-style:italic;}
 .grid tr:nth-child(even) td { background: #e7e7e7 !important; }
 
+.table {
+  .row {
+    clear: both;
+    .cell, .header  {
+      display: inline-block;
+    }
+    .header {
+      background: #005b7f; color:white;
+    }
+  }
+}
+
 tr th {background: #005b7f; color:white;}
 
 .search_area {background: #e6e6e6; border: 1px solid #cdcdcd; margin-top: 10px; margin-bottom: 10px; padding: 10px;}
@@ -71,18 +83,63 @@ tr th {background: #005b7f; color:white;}
 .main-layout {border: 0px; margin: 20px 0px; height: 1000px;}
 
 // Left side
-.left-layout {width: 70%; vertical-align: top; background: white; padding: 0px;  box-shadow: 2px 5px 5px #808080;}
+.left-layout {width: 80%; vertical-align: top; background: white; padding: 0px;  box-shadow: 2px 5px 5px #808080;}
 .left-layout-title {background: #cdcdcd; padding: 10px; height: 20px; }
 .left-layout-title h1 {font-size: 18px; font-weight: bold; padding: 0px; margin: 0px; float:left; }
 .left-layout-title .nav {float: right;}
 .left-layout-container {margin: 10px}
 
 // Right side
-.right-layout {width: 30%;  vertical-align: top;}
+.right-layout {width: 20%;  vertical-align: top;}
 .right-layout-container {margin: 10px}
 .right-layout-container h2 {font-size: 18px; font-weight: bold; padding: 0px; margin: 0px;}
 .sidebar-section {margin-bottom: 15px;}
 .sidebar-section ul {padding: 0px; list-style: none; margin: 0px;}
+
+
+.action-menu {
+  border: 1px solid #cdcdcd;
+  background: #e6e6e6;
+  padding: 5px;
+  margin:3px;
+  width: 30px;
+
+  .arrow {
+    display: inline-block;
+    background: url("arrow_down.png") no-repeat top center;
+    height: 7px;
+    width: 7px;
+  }
+  .menu {
+    background: #cdcdcd;
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    padding: 10px;
+    margin-left: -6px;
+    color: black;
+    min-width: 50px;
+
+    ul {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+    }
+
+    ul li {
+
+    }
+
+  }
+
+  &:hover {
+    background: #cdcdcd;
+
+    .menu {
+      display: block;
+    }
+  }
+}
 
 
 // Pagination

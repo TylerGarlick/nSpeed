@@ -1,36 +1,39 @@
-<h1>Show Material</h1>
+<% content_for :titlebar do %>
+  <h1><%= link_to "Project #{project.name}", project_url(project) %>
+    > <%= link_to "Materials", project_materials_url(project) %> > <%= material.name %></h1>
+<% end %>
 
+<% content_for :sidebar do %>
+  <%= render :partial => 'projects/project_sidebar' %>
+<% end %>
 
-  <div class="fields">
-    Name: <%= material.name %>
-  </div>
-  <div class="fields">
-    Heat number: <%= material.heat_number %>
-  </div>
-  <div class="fields">
-    N number: <%= material.n_number %>
-  </div>
-
-<div>
-  Successor material:
-  <% if material.successor.nil? %>
-    'none'
-  <% else %>
-    <%= link_to p.name, material_url(material) %>
-  <% end %>
-</div>
-
-  <div>
-    Predecessor material:
-    <% if material.predecessors.nil? || material.predecessors.empty? %>
-        none
-    <% else %>
-        <% material.predecessors.each do |p| %>
-        <div>
-          <%= link_to p.name, material_url(material) %>
-          <%= p.name %>
-        </div>
-        <% end %>
+<div class="material">
+  <h1>
+    <%= material.name %>
+    <% unless material.material_tracking_number.blank? %>
+      > <%= material.material_tracking_number %>
     <% end %>
-  </div>
-<%= link_to 'Back', materials_url %>
+  </h1>
+
+  <div>Current
+    Status:  <%= link_to material.material_status.name, receiving_index_url(:material_status_id => material.material_status) %></div>
+  <div>Document:  <%= link_to material.document.name, project_document_url(project, material.document) %></div>
+  <% unless material.invoice_url.blank? %>
+    <div>Invoice:  <%= link_to get_file_from_url(material.invoice_url), material.invoice_url %></div>
+  <% end %>
+  <div><%= material.description %></div>
+  <div>Heat Number:  <%= material.heat_number %></div>
+  <div>Quantity Needed for Project:  <%= material.quantity %></div>
+
+
+
+  <h3>Ordered</h3>
+
+  <div>Quantity Ordered:  <%= material.quantity_ordered %></div>
+  <div>Date Ordered:  <%= simple_date(material.ordered_date) %></div>
+
+  <h3>Received</h3>
+
+  <div>Quantity Received:  <%= material.quantity_ordered %></div>
+  <div>Date Ordered:  <%= simple_date(material.received_date) %></div>
+</div>

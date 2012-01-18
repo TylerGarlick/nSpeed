@@ -1,0 +1,36 @@
+<%= form_for [:company_admin, user] do |f| %>
+  <%= f.error_messages %>
+  <div class="fields">
+    <%= f.label :user_type %>
+    <%= f.select :user_type, User.get_user_type_values  %>
+  </div>
+  <div class="fields">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="fields">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="fields">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+  <div class="fields">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <% if user.new_record? %>
+    <div class="fields">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="fields">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+  <% end %>
+  <div class="buttons">
+    <%= f.submit user.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", company_admin_users_url %>
+  </div>
+<% end %>

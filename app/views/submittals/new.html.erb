@@ -1,7 +1,8 @@
 <% content_for :titlebar do %>
-  <h1><%= link_to "Project #{project.name}", project_url(project) %> > <%=  link_to "Submittals", project_submittals_url(project) %></h1>
+  <h1><%= link_to "Project #{project.name}", project_url(project) %>
+    > <%= link_to "Submittals", project_submittals_url(project) %></h1>
   <div class="nav">
-    
+
   </div>
 <% end %>
 
@@ -21,19 +22,18 @@
 
   <div class="fields">
     <label for="">Documents</label>
-    <div id="documents">
 
+    <div id="documents">
     </div>
   </div>
   <div class="buttons">
-    <%= f.hidden_field :user_id, :value => current_user.id.to_s %>
     <%= f.submit submittal.new_record? ? "Create" : "Update" %>
   </div>
 <% end %>
 
 <script>
-  $(function(){
-    $("#submittal_project_requirement_id").change(function(){
+  $(function () {
+    $("#submittal_project_requirement_id").change(function () {
       populate_documents_by_project_requirement($(this).val());
     });
 
@@ -41,12 +41,13 @@
 
   });
 
-  function populate_documents_by_project_requirement(id){
-    $.get("<%= by_requirement_project_documents_url(project)%>.json", {project_requirement_id: id}, function(data) {
-        var documents = $("#documents");
-        $.each(data,  function(index, value){
-          documents.append('<div><input type="checkbox" name="submittal[document_ids][]" value="' + value.id +'" />' + value.name + '</div>')
-        });
+  function populate_documents_by_project_requirement(id) {
+    $.get("<%= by_requirement_project_documents_url(project)%>.json", {project_requirement_id:id}, function (data) {
+      var documents = $("#documents");
+      documents.empty();
+      $.each(data, function (index, value) {
+        documents.append('<div><input type="checkbox" name="submittal[document_ids][]" value="' + value.id + '" />' + value.name + '</div>')
+      });
     });
   }
 </script>

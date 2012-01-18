@@ -3,18 +3,16 @@ Nspeed::Application.routes.draw do
 
   devise_for :users
 
+  resources :receiving
   resources :projects do
     resources :documents do
       get 'by_requirement', :on => :collection
       resources :document_assets
     end
-    resources :material_trackings
-    resources :people
+    resources :materials do
+      resources :material_invoices
+    end
     resources :submittals
-  end
-
-  resources :materials do
-    get 'related_materials'
   end
 
   namespace :admin do
@@ -39,7 +37,6 @@ Nspeed::Application.routes.draw do
     end
     resources :customers
     resources :project_types
-    resources :people
     resources :roles
     resources :users
   end

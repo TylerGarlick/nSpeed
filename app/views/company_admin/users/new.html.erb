@@ -1,10 +1,10 @@
 <% content_for :titlebar do %>
-  <h1><%= link_to company.name, company_admin_dashboard_url %> > <%= link_to "People", company_admin_people_url %></h1>
+  <h1><%= link_to company.name, company_admin_dashboard_url %> > <%= link_to "Users", company_admin_users_url %></h1>
 <% end %>
 
 <% content_for :sidebar do %>
   <%= render :partial => 'company_admin/shared/sidebar' %>
 <% end %>
 
-
+<h1>New User</h1>
 <%= render :partial => 'form' %>

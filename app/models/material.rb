@@ -1,20 +1,15 @@
 class Material < ActiveRecord::Base
-  has_ancestry
-  belongs_to :company
 
-  validates_presence_of :name, :company_id
+  belongs_to :project
+  belongs_to :document
+  belongs_to :material_status
+  has_many :material_invoices
+
+  validates_presence_of :name, :project_id, :document_id
+  validates_numericality_of :item_number, :quantity
+
+  mount_uploader :invoice_url, AssetUploader
 
   scope :active_materials, where(:active => true)
-
-  def predecessors
-    children
-  end
-
-  def successor
-    parent
-  end
-  def successor=(m)
-    self.parent_id = m.id
-  end
 
 end

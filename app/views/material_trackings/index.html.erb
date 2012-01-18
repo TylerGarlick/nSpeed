@@ -12,13 +12,11 @@
 <table class="grid">
   <tr>
     <th>Name</th>
-    <th>Description</th>
     <th></th>
   </tr>
   <% material_trackings.each do |material_tracking| %>
     <tr>
-      <td><%= material_tracking.name %></td>
-      <td><%= material_tracking.description %></td>
+      <td><%= link_to material_tracking.name, project_material_tracking_url(project, material_tracking) %></td>
       <td><%= link_to "Edit", edit_project_material_tracking_url(project, material_tracking) %> <%= link_to "Delete", project_material_tracking_url(project, material_tracking), :method => :delete, :confirm => "Are you sure you want to delete #{material_tracking.name}?" %></td>
     </tr>
   <% end %>

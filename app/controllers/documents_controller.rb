@@ -3,6 +3,7 @@ class DocumentsController < ApplicationController
 
   expose(:project)
   expose(:project_requirements) {project.project_requirements}
+  expose(:document_types) {DocumentType.all}
   expose(:submittal_statuses) {project.submittal_statuses}
   expose(:documents) {
     if params[:project_requirement_id].nil? || params[:project_requirement_id].empty?
@@ -18,7 +19,7 @@ class DocumentsController < ApplicationController
   end
 
   def by_requirement
-    respond_with ProjectRequirement.find(params[:project_requirement_id]).documents.order(:name)
+    respond_with ProjectRequirement.find(params[:project_requirement_id]).documents.joins("left outer join document_assets  on document_assets.document_id = documents.id").where("document_assets.submittal_status_id is null").order(:name)
   end
 
   def show
@@ -30,7 +31,7 @@ class DocumentsController < ApplicationController
   def create
     project.documents << document
     if project.save
-      redirect_to project_document_url, :notice => "Document was created successfully!"
+      redirect_to project_documents_url(project), :notice => "Document was created successfully!"
     else
       render :new
     end
@@ -41,9 +42,8 @@ class DocumentsController < ApplicationController
 
   def update
     params[:document][:project_requirement_ids] ||= []
-
     if document.update_attributes(params[:document])
-      redirect_to project_documents_url, :notice => "Document was updated successfully!"
+      redirect_to project_documents_url(project), :notice => "Document was updated successfully!"
     else
       render :edit
     end
@@ -51,6 +51,6 @@ class DocumentsController < ApplicationController
 
   def destroy
     document.destroy?
-    redirect_to project_documents_url, :notice => "Document was deleted successfully!"
+    redirect_to project_documents_url(project), :notice => "Document was deleted successfully!"
   end
 end

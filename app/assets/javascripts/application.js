@@ -12,4 +12,5 @@
 //= require ./colorpicker/eye
 //= require ./colorpicker/utils
 //= require ./colorpicker/layout
+//= require rails.validations
 //= require_tree .

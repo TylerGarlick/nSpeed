@@ -14,7 +14,7 @@ class CompanyAdmin::PrerequisitesController < ApplicationController
   def create
     project.prerequisites << prerequisite
     if project.save
-      redirect_to company_admin_project_prerequisites_url(project), :notice => "PreRequisite #{prerequisite.name} was created successfully!"
+      redirect_to company_admin_project_prerequisites_url(project), :notice => "Prerequisite #{prerequisite.name} was created successfully!"
     else
       render :new
     end
@@ -25,7 +25,7 @@ class CompanyAdmin::PrerequisitesController < ApplicationController
 
   def update
     if prerequisite.update_attributes(params[:prerequisite])
-      redirect_to company_admin_project_prerequisites_url(project), :notice => "PreRequisite #{prerequisite.name} was updated successfully!"
+      redirect_to company_admin_project_prerequisites_url(project), :notice => "Prerequisite #{prerequisite.name} was updated successfully!"
     else
       render :edit
     end
@@ -33,6 +33,6 @@ class CompanyAdmin::PrerequisitesController < ApplicationController
 
   def destroy
     prerequisite.destroy
-    redirect_to company_admin_project_prerequisites_url(project), :notice => "PreRequisite #{prerequisite.name} was deleted successfully!"
+    redirect_to company_admin_project_prerequisites_url(project), :notice => "Prerequisite #{prerequisite.name} was deleted successfully!"
   end
 end

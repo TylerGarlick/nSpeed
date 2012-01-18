@@ -1,10 +1,14 @@
 class MaterialTrackingsController < ApplicationController
   expose(:project)
+  expose(:documents) {project.documents}
 
   expose(:material_trackings) {project.material_trackings}
   expose(:material_tracking)
 
   def index
+  end
+
+  def show
   end
 
   def new

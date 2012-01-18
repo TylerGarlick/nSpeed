@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>nSpeed</title>
-
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" %>
   <%= stylesheet_link_tag "http://yui.yahooapis.com/2.9.0/build/base/base-min.css" %>
   <%= stylesheet_link_tag "application" %>
@@ -16,7 +15,6 @@
 <% end %>
 
 <header>
-
   <div class="logo"><%= link_to image_tag("logo.png"), root_url, :class => "no-background" %></div>
   <div class="projects-dropdown">
     <select id="projects">
@@ -27,7 +25,6 @@
         <% end %>
       </optgroup>
       <optgroup label="Shared Projects">
-
       </optgroup>
     </select>
   </div>
@@ -70,7 +67,6 @@
       </td>
     </tr>
   </table>
-
 </article>
 
 <script>
@@ -81,9 +77,8 @@
         window.location = "/projects/" + option.val();
       }
     });
-
     $('.flash').delay(2000).slideUp();
-
+    $('.modal').jqm({modal: true});
   });
 </script>
 <%= yield :javascript %>

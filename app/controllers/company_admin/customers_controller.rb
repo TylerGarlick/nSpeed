@@ -1,9 +1,15 @@
 class CompanyAdmin::CustomersController < ApplicationController
-  expose(:company) {current_user.company}
-  expose(:customers) {company.customers.paginate(:page => params[:page])}
-  expose(:customer)
+  expose(:company) { current_user.company }
+  expose(:customers) { company.customers.paginate(:page => params[:page]) }
+  expose(:customer) {
+    if params[:id].blank?
+      Customer.new
+    else
+      company.customers.find(params[:id])
+    end }
 
   def index
+
   end
 
   def show
@@ -22,6 +28,7 @@ class CompanyAdmin::CustomersController < ApplicationController
   end
 
   def edit
+    customer = company.customers.find(params[:id])
   end
 
   def update

@@ -1,0 +1,41 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Receiving", receiving_index_url %> > <%= material.name %></h1>
+<% end %>
+
+<% content_for :sidebar do %>
+
+<% end %>
+
+<%= form_for material, :url => receiving_url do |f| %>
+  <% if material.material_status == MaterialStatus.find_by_name("Entered") %>
+    <div class="fields">
+      <%= f.label :quantity %>
+      <div><%= material.quantity %></div>
+    </div>
+    <div class="fields">
+      <%= f.label :quantity_ordered %>
+      <%= f.text_field :quantity_ordered, :value => material.quantity %>
+    </div>
+    <div class="fields">
+      <%= f.label :invoice_url, "Invoice" %>
+      <%= f.file_field :invoice_url %>
+    </div>
+  <% elsif material.material_status == MaterialStatus.find_by_name("Ordered")  %>
+    <div class="fields">
+      <%= f.label :quantity_ordered %>
+      <div><%= material.quantity_ordered %></div>
+    </div>
+    <div class="fields">
+      <%= f.label :quantity_received %>
+      <%= f.text_field :quantity_received %>
+    </div>
+  <% elsif material.material_status == MaterialStatus.find_by_name("Received")  %>
+    <div class="fields">
+      <%= f.label :material_tracking_number %>
+      <%= f.text_field :material_tracking_number %>
+    </div>
+  <% end %>
+  <div class="buttons">
+    <%= f.submit "Update" %> <%= link_to "Cancel", receiving_index_url %>
+  </div>
+<% end %>

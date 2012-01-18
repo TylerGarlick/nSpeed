@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111215234848) do
+ActiveRecord::Schema.define(:version => 20120110222322) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -36,12 +36,20 @@ ActiveRecord::Schema.define(:version => 20111215234848) do
     t.integer  "submittal_status_id"
   end
 
+  create_table "document_types", :force => true do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "documents", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "document_type_id"
   end
 
   create_table "documents_project_requirements", :id => false, :force => true do |t|
@@ -54,60 +62,37 @@ ActiveRecord::Schema.define(:version => 20111215234848) do
     t.integer "project_id"
   end
 
-  create_table "material_tracking_items", :force => true do |t|
-    t.integer  "material_tracking_id"
-    t.integer  "user_id"
-    t.integer  "item_number"
-    t.string   "material"
-    t.text     "description"
-    t.integer  "quantity"
-    t.datetime "verified_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "material_trackings", :force => true do |t|
-    t.integer  "project_id"
+  create_table "material_statuses", :force => true do |t|
     t.string   "name"
-    t.text     "description"
-    t.integer  "document_id"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "materials", :force => true do |t|
-    t.integer  "company_id"
     t.string   "name"
     t.string   "heat_number"
-    t.string   "n_number"
-    t.string   "ancestry"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  add_index "materials", ["ancestry"], :name => "index_materials_on_ancestry"
-
-  create_table "people", :force => true do |t|
-    t.integer  "company_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "address"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.datetime "birthday"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "people_projects", :id => false, :force => true do |t|
-    t.integer "person_id"
-    t.integer "project_id"
+    t.integer  "project_id"
+    t.integer  "document_id"
+    t.integer  "item_number"
+    t.integer  "quantity"
+    t.string   "vendor"
+    t.text     "description"
+    t.string   "astm_number"
+    t.string   "material_tracking_number"
+    t.integer  "material_status_id"
+    t.integer  "tested_user_id"
+    t.integer  "received_user_id"
+    t.integer  "ordered_user_id"
+    t.integer  "quantity_received"
+    t.integer  "quantity_ordered"
+    t.datetime "received_date"
+    t.datetime "ordered_date"
+    t.datetime "tested_date"
+    t.string   "invoice_url"
   end
 
   create_table "prerequisites", :force => true do |t|
@@ -226,6 +211,9 @@ ActiveRecord::Schema.define(:version => 20111215234848) do
     t.datetime "updated_at"
     t.integer  "company_id"
     t.string   "user_type"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "initials"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

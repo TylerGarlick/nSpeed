@@ -1,0 +1,33 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to company.name, company_admin_dashboard_url %> > Users</h1>
+  <div class="nav">
+    <%= link_to 'New User', new_company_admin_user_url %>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'company_admin/shared/sidebar' %>
+<% end %>
+
+<h1>Users</h1>
+
+<table class="grid">
+  <tr>
+    <th>User Type</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th></th>
+  </tr>
+  <% users.each do |user| %>
+    <tr>
+      <td><%= user_type_name(user.user_type) %></td>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to "Edit", edit_company_admin_user_url(user) %> | <%= link_to "Delete", company_admin_user_url(user), :method => :delete, :confirm => "Are you sure you want to delete the user #{user.full_name}?" %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,54 +1,40 @@
-<%= form_for material do |f| %>
+<%= form_for [project, material], :validate => true do |f| %>
+  <%= f.error_messages %>
+
+  <div class="fields">
+    <%= f.label :document_id %>
+    <%= f.collection_select :document_id, documents, :id, :name %>
+  </div>
   <div class="fields">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
+
   <div class="fields">
-    <%= f.label :heat_number %>
-    <%= f.text_field :heat_number %>
-  </div>
-  <div class="fields">
-    <%= f.label :n_number %>
-    <%= f.text_field :n_number %>
-  </div>
-  <div class="fields">
-    <%= f.label :active %>
-    <%= f.check_box :active %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
   </div>
 
-  <h3>Related Materials</h3>
-  <div class="related-materials">
-    <div class="fields">
-      <input type="text" id="material" />
-    </div>
-    <div class="fields">
-      <ul id="related-materials-list">
-        <li>Material 1</li>
-      </ul>
-      <div id="log"></div>
-    </div>
+  <div class="fields">
+    <%= f.label :item_number %>
+    <%= f.text_field :item_number %>
   </div>
 
+  <div class="fields">
+    <%= f.label :astm_number, "ASTM #" %>
+    <%= f.text_field :astm_number %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :quantity %>
+    <%= f.text_field :quantity %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :vendor %>
+    <%= f.text_field :vendor %>
+  </div>
   <div class="buttons">
-    <%= f.submit material.new_record? ? "Create" : "Update" %> <%= link_to 'Cancel', materials_url %>
+    <%= f.submit material.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", project_materials_url(project) %>
   </div>
 <% end %>
-
-<script>
-$(function() {
-		function log( message ) {
-			$( "<li/>" ).text( message ).appendTo( "#related-materials-list" );
-			$( "#related-materials-list" ).scrollTop( 0 );
-		}
-
-		$( "#material" ).autocomplete({
-			source: ["Test", "Blah", "hello", "world"],
-			minLength: 2,
-			select: function( event, ui ) {
-				log( ui.item ?
-					"Selected: " + ui.item.value + " aka " + ui.item.id :
-					"Nothing selected, input was " + this.value );
-			}
-		});
-	});
-</script>

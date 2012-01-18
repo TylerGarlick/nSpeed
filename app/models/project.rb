@@ -1,11 +1,13 @@
 class Project < ActiveRecord::Base
   belongs_to :company
   belongs_to :customer
+  belongs_to :project_type
+
   has_many :project_requirements
   has_many :prerequisites
   has_many :submittal_statuses
-  has_many :material_trackings
-  has_and_belongs_to_many :people
+  has_many :materials
+
   has_and_belongs_to_many :documents
 
   has_many :role_resources, :as => :resource
