@@ -13,6 +13,9 @@ class Document < ActiveRecord::Base
   has_many :role_resources, :as => :resource
   has_many :roles, :through => :role_resources
 
+  has_many :material_pos
+  has_many :pos, :through => :material_pos
+
   def current_document
     document_assets.order("created_at DESC").first
   end

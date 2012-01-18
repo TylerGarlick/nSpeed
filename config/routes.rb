@@ -4,6 +4,8 @@ Nspeed::Application.routes.draw do
   devise_for :users
 
   resources :receiving
+  resources :material_types
+
   resources :projects do
     resources :documents do
       get 'by_requirement', :on => :collection

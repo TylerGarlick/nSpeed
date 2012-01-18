@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
   has_many :project_types
   has_many :customers
   has_many :roles
+  has_many :material_types
 
 
 end
