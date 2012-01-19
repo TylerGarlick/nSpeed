@@ -1,4 +1,4 @@
-<%= form_for [material_type], :validate => true do |f| %>
+<%= form_for [project, material_type], :validate => true do |f| %>
   <%= f.error_messages %>
   <div class="fields">
     <%= f.label :name %>
@@ -19,6 +19,6 @@
   </div>
   <div class="buttons">
     <%= f.hidden_field :company_id, :value => company.id.to_s %>
-    <%= f.submit material_type.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", material_types_url %>
+    <%= f.submit material_type.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", project_material_types_url(project) %>
   </div>
 <% end %>

@@ -10,10 +10,14 @@ class MaterialsController < ApplicationController
       project.materials.active_materials.where('name like ? or heat_number like ?', pattern, pattern)
     end
   }
+
+  expose(:material_types) {company.material_types}
   expose(:pattern) {
     "%#{params[:query]}%"
   }
   expose(:material)
+  expose(:document_types) {DocumentType.all}
+  expose(:document) {Document.new}
 
   def index
   end

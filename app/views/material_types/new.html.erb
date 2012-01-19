@@ -1,9 +1,9 @@
 <% content_for :titlebar do %>
-  <h1><%= link_to company.name, root_url %> > <%= link_to "Material Types", material_types_url %></h1>
+  <h1><%= link_to company.name, root_url %> > <%= link_to "Material Types", project_material_types_url(project) %></h1>
 <% end %>
 
 <% content_for :sidebar do %>
-
+  <%= render :partial => 'projects/project_sidebar' %>
 <% end %>
 
 <h1>New Material Type</h1>

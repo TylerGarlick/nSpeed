@@ -8,9 +8,81 @@
 <% end %>
 
 <div class="material">
-  <h1>
-    <%= material.name %>
-  </h1>
+  <h1><%= material.name %></h1>
 
+  <div><%= material.description %></div>
+  
+  <h3>Documents</h3>
+
+  <a class="action-button" href="#" id="new-document">
+    <span class="new-document"></span>
+    <span>Add Document</span>
+  </a>
+
+  <table>
+    <tr>
+      <th>Document</th>
+      <th>Type</th>
+      <th>Current File</th>
+      <th></th>
+    </tr>
+  
+  <% material.documents.each do |document| %>
+      <tr>
+        <td><%= link_to document.name, project_document_url(project, document) %></td>
+        <td><%= document.document_type.name %></td>
+        <td>
+          <a href="<%= document.current_document.asset_url %>" target="_blank"><%= get_file_from_url(document.current_document.asset_url) %></a>
+        </td>
+        <td></td>
+      </tr>
+  <% end %>
+  </table>
+</div>
+
+
+<div class="modal jqmWindow">
+  <h2>New Document</h2>
+  <%= form_for [project, document] do |f| %>
+
+    <div class="fields">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="fields">
+      <%= f.label :document_type_id %>
+      <%= f.collection_select :document_type_id, document_types, :id, :name %>
+    </div>
+
+    <div class="fields">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="fields">
+      <%= f.fields_for :document_assets, DocumentAsset.new do |da| %>
+        <%= da.label :asset_url, "Document" %>
+        <%= da.file_field :asset_url %>
+      <% end %>
+    </div>
+
+    <div class="buttons">
+      <%= hidden_field_tag :material_id, material.id %>
+      <%= hidden_field_tag :redirect_to, project_material_url(project, material) %>
+      <button type="submit">Create</button>
+      <button type="button" class="jqmClose">Close</button>
+    </div>
+  <% end %>
 
 </div>
+
+<% content_for :javascript do  %>
+  <script>
+    $(function(){
+      $("#new-document").click(function(){
+        $(".modal").jqmShow();
+      });
+    });
+  </script>
+<% end %>

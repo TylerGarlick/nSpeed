@@ -1,0 +1,3 @@
+class CompanyAdminController < ApplicationController
+
+end

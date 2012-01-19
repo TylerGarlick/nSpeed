@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120116221926) do
+ActiveRecord::Schema.define(:version => 20120119040222) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120116221926) do
     t.string   "customer_response_url"
     t.datetime "customer_response_date"
     t.integer  "submittal_status_id"
+    t.integer  "user_id"
   end
 
   create_table "document_types", :force => true do |t|
@@ -62,18 +63,18 @@ ActiveRecord::Schema.define(:version => 20120116221926) do
     t.integer "project_id"
   end
 
+  create_table "material_documents", :force => true do |t|
+    t.integer  "document_id"
+    t.integer  "material_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quantity_ordered"
+    t.integer  "quantity_received"
+  end
+
   create_table "material_lists", :force => true do |t|
     t.integer  "project_id"
     t.integer  "document_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "material_pos", :force => true do |t|
-    t.integer  "document_id"
-    t.integer  "material_id"
-    t.integer  "quantity_ordered"
-    t.integer  "quantity_received"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

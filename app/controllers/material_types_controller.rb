@@ -1,7 +1,9 @@
 class MaterialTypesController < ApplicationController
   expose(:company) {current_user.company}
+  expose(:project)
   expose(:material_types) {MaterialType.where(:company_id => company)}
   expose(:material_type)
+
 
   def index
   end

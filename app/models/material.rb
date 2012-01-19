@@ -8,6 +8,9 @@ class Material < ActiveRecord::Base
 
   has_many :material_invoices
   has_many :material_pos
+  has_many :material_documents
+  has_many :documents, :through => :material_documents
+
   has_many :pos, :through => :material_pos
   has_many :material_status_histories
 

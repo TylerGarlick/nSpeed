@@ -6,7 +6,8 @@ class CompanyAdmin::CustomersController < ApplicationController
       Customer.new
     else
       company.customers.find(params[:id])
-    end }
+    end
+  }
 
   def index
 

@@ -1,8 +1,12 @@
 <% content_for :titlebar do %>
   <h1><%= company.name %> > Material Types</h1>
   <div class="nav">
-    <%= link_to "New Material Type", new_material_type_url %>
+    <%= link_to "New Material Type", new_project_material_type_url(project) %>
   </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'projects/project_sidebar' %>
 <% end %>
 
 <table>
@@ -17,7 +21,7 @@
       <td><%= material_type.name %></td>
       <td><%= material_type.astm_number %></td>
       <td><%= material_type.heat_number %></td>
-      <td><%= link_to 'Edit', edit_material_type_url(material_type) %> | <%= link_to 'Delete', material_type_url(material_type), :method => :delete, :confirm => "Are you sure you want to delete #{material_type.name}?" %></td>
+      <td><%= link_to 'Edit', edit_project_material_type_url(project, material_type) %> | <%= link_to 'Delete', project_material_type_url(project, material_type), :method => :delete, :confirm => "Are you sure you want to delete #{material_type.name}?" %></td>
     </tr>
   <% end %>
 </table>

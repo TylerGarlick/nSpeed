@@ -1,0 +1,2 @@
+class MaterialDocumentsController < ApplicationController
+end

@@ -4,7 +4,7 @@ Nspeed::Application.routes.draw do
   devise_for :users
 
   resources :receiving
-  resources :material_types
+
 
   resources :projects do
     resources :documents do
@@ -15,6 +15,7 @@ Nspeed::Application.routes.draw do
       resources :material_invoices
     end
     resources :submittals
+    resources :material_types
   end
 
   namespace :admin do
@@ -41,6 +42,7 @@ Nspeed::Application.routes.draw do
     resources :project_types
     resources :roles
     resources :users
+    resources :material_types
   end
 
   resources :custom_fields
