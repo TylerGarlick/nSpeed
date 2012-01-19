@@ -87,7 +87,6 @@ function autocompleteTable(obj, options) {
         minLength: 2,
         source : options.url(),
         select: function(event, ui) {
-            //var $r = createRow(options.id, options.heading, options.combos, {id:ui.item.id, name:ui.item.name, mode:ui.item.mode});
             var $r = createRow(options.id, options.heading, options.combos, ui.item);
             $table.find('tbody').append($r);
             //Sort table duplicates the rows - not what I want
