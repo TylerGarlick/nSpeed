@@ -22,15 +22,15 @@
   </tr>
   <% documents.each do |document| %>
     <tr style="background:#cdcdcd;">
-      <td colspan="3">Drawing:  <%= link_to document.name, project_document_url(project, document) %></td>
+      <td colspan="4">Drawing:  <%= link_to document.name, project_document_url(project, document) %></td>
     </tr>
     
-    <% material_lists.where(document_id: document).each do |list| %>
+    <% material_lists.where(document_id: document).joins(:material).order('item_number ASC').each do |material_list| %>
       <tr>
-        <td><%= list.material.item_number %></td>
-        <td><%= list.material.material_type.name %></td>
-        <td><%= list.material.quantity %></td>
-        <td></td>
+        <td><%= material_list.material.item_number %></td>
+        <td><%= material_list.material.material_type.name %></td>
+        <td><%= material_list.material.quantity %></td>
+        <td><%= link_to 'Edit', edit_project_material_list_url(project, material_list) %> | <%= link_to 'Delete', project_material_list_url(project, material_list), :method => :delete, :confirm => "Are you sure you want to delete #{material_list.material.material_type.name}?" %></td>
       </tr>
     <% end %>
   <% end %>

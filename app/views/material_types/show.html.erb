@@ -1,0 +1,36 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to company.name, root_url %> > <%= link_to "Material Types", project_material_types_url(project) %> </h1>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'projects/project_sidebar' %>
+<% end %>
+
+<h1><%= material_type.name %></h1>
+<div class="fields">
+  <label>Description</label>
+  <%= material_type.description %>
+</div>
+<div class="fields">
+  <label>Heat Number</label>
+  <%= material_type.heat_number %>
+</div>
+<div class="fields">
+  <label>ASTM Number</label>
+  <%= material_type.astm_number %>
+</div>
+<h2 style="margin-top: 25px;">Utilized</h2>
+<table class="grid">
+  <tr>
+    <th>Project</th>
+    <th>Document</th>
+    <th>Quantity</th>
+  </tr>
+  <% material_type.materials.each do |material| %>
+    <tr>
+      <td><%= link_to material.material_list.project.name, project_url(project) %></td>
+      <td><%= link_to material.material_list.document.name, project_document_url(project, material.material_list.document) %></td>
+      <td><%= material.quantity %></td>
+    </tr>
+  <% end %>
+</table>

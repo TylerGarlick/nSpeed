@@ -5,6 +5,7 @@ class Material < ActiveRecord::Base
   belongs_to :material_status
   belongs_to :material_list
   belongs_to :company
+  has_one :material_list
 
   has_many :material_documents
   has_many :documents, :through => :material_documents
@@ -16,7 +17,6 @@ class Material < ActiveRecord::Base
 
   mount_uploader :invoice_url, AssetUploader
 
-  scope :active_materials, where(:active => true)
 
   def current_status
     material_status_histories.order("created_at ASC").first

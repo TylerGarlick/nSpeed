@@ -8,7 +8,7 @@
 <% content_for :sidebar do %>
   <%= render :partial => 'projects/project_sidebar' %>
 <% end %>
-
+<h1>Material Types</h1>
 <table>
   <tr>
     <th>Name</th>
@@ -18,7 +18,7 @@
   </tr>
   <% material_types.each do |material_type| %>
     <tr>
-      <td><%= material_type.name %></td>
+      <td><%= link_to material_type.name, project_material_type_url(project, material_type) %></td>
       <td><%= material_type.astm_number %></td>
       <td><%= material_type.heat_number %></td>
       <td><%= link_to 'Edit', edit_project_material_type_url(project, material_type) %> | <%= link_to 'Delete', project_material_type_url(project, material_type), :method => :delete, :confirm => "Are you sure you want to delete #{material_type.name}?" %></td>

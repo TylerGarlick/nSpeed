@@ -2,22 +2,18 @@ class MaterialsController < ApplicationController
   expose(:project)
   expose(:company) { current_user.company }
   expose(:documents) { project.documents.where(document_type_id: DocumentType.find_by_name("Weld Map").id) }
-  expose(:material_statuses) {MaterialStatus.all}
-  expose(:materials) {
-    if params[:query].nil? || params[:query].empty?
-      project.materials.active_materials
-    else
-      project.materials.active_materials.where('name like ? or heat_number like ?', pattern, pattern)
-    end
+  expose(:material_statuses) { MaterialStatus.all }
+  expose(:material_lists) {
+    MaterialList.where(project_id: project.id)
   }
 
-  expose(:material_types) {company.material_types}
+  expose(:material_types) { company.material_types }
   expose(:pattern) {
     "%#{params[:query]}%"
   }
   expose(:material)
-  expose(:document_types) {DocumentType.all}
-  expose(:document) {Document.new}
+  expose(:document_types) { DocumentType.all }
+  expose(:document) { Document.new }
 
   def index
   end
@@ -42,7 +38,7 @@ class MaterialsController < ApplicationController
 
   def update
     if material.update_attributes(params[:material])
-      redirect_to  project_materials_url(project), :notice => "#{material.name} was updated successfully"
+      redirect_to project_materials_url(project), :notice => "#{material.name} was updated successfully"
     else
       render :edit
     end
@@ -55,6 +51,6 @@ class MaterialsController < ApplicationController
     else
       message = "There was a problem"
     end
-    redirect_to  project_materials_url(project), :notice => message
+    redirect_to project_materials_url(project), :notice => message
   end
 end

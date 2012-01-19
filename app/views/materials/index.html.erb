@@ -1,41 +1,31 @@
 <% content_for :titlebar do %>
   <h1><%= link_to "Project #{project.name}", project_url(project) %> > Materials</h1>
-  <div class="nav">
-    <%= link_to "New Material", new_project_material_url(project) %>
-  </div>
 <% end %>
 
 <% content_for :sidebar do %>
   <%= render :partial => 'projects/project_sidebar' %>
 <% end %>
 
+<h1>Materials for <%= project.name %></h1>
 
-<%= form_tag project_materials_url(project), :method => :get do %>
-  <div class="search_area">
-    <%= search_field_tag :query, params[:value] %>
-    <%= submit_tag "Search" %>
-  </div>
-<% end %>
 <table class="grid">
   <tr>
-    <th>Item #</th>
     <th>Name</th>
+    <th>Document</th>
     <th>Status</th>
     <th>Heat Number</th>
     <th>Quantity</th>
-    <th>Vendor</th>
     <th></th>
   </tr>
 
-  <% materials.order(:item_number).each do |material| %>
+  <% material_lists.each do |material_list| %>
     <tr>
-      <td><%= material.item_number %></td>
-      <td><%= link_to material.name, project_material_url(project, material) %></td>
-      <td><%= material.material_status.name %></td>
-      <td><%= material.heat_number %></td>
-      <td><%= material.quantity %></td>
-      <td><%= material.vendor %></td>
-      <td><%= link_to "Edit", edit_project_material_url(project, material) %> <%= link_to "Delete", project_material_url(project, material), :method => :delete, :confirm => "Are you sure you want to delete #{material.name}?" %></td>
+      <td><%= link_to material_list.material.material_type.name, project_material_url(project, material_list.material) %></td>
+      <td><%= link_to material_list.document.name, project_material_url(project, material_list.document) %></td>
+      <td><%= material_list.material.material_status.name %></td>
+      <td><%= material_list.material.material_type.heat_number %></td>
+      <td><%= material_list.material.quantity %></td>
+      <td></td>
     </tr>
   <% end %>
 </table>

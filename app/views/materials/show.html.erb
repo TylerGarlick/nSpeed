@@ -1,6 +1,6 @@
 <% content_for :titlebar do %>
   <h1><%= link_to "Project #{project.name}", project_url(project) %>
-    > <%= link_to "Materials", project_materials_url(project) %> > <%= material.name %></h1>
+    > <%= link_to "Materials", project_materials_url(project) %> > <%= material.material_type.name %></h1>
 <% end %>
 
 <% content_for :sidebar do %>
@@ -8,7 +8,7 @@
 <% end %>
 
 <div class="material">
-  <h1><%= material.name %></h1>
+  <h1><%= material.material_type.name %></h1>
 
   <div><%= material.description %></div>
   
@@ -70,8 +70,8 @@
     <div class="buttons">
       <%= hidden_field_tag :material_id, material.id %>
       <%= hidden_field_tag :redirect_to, project_material_url(project, material) %>
-      <button type="submit">Create</button>
-      <button type="button" class="jqmClose">Close</button>
+      <button type="submit" style="float:left;">Create</button>
+      <button type="button" class="jqmClose" style="float: right;">Close</button>
     </div>
   <% end %>
 
