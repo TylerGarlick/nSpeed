@@ -59,8 +59,7 @@ class CompanyAdmin::ProjectsController < ApplicationController
 
   def roles
     if params[:term]
-      # TODO: This needs to limit the query to only roles within the company
-      @roles = Role.find(:all,:conditions => ['name LIKE ?', "%#{params[:term]}%"]).map{|x| {:id => x.id, :name => x.name, :mode => :read}}
+      @roles = Role.find(:all,:conditions => ['company_id = ? AND name LIKE ?', company.id, "%#{params[:term]}%"]).map{|x| {:id => x.id, :name => x.name, :mode => :read}}
     else
       @roles = Role.all
     end
