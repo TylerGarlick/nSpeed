@@ -26,20 +26,16 @@
     <th>Vendor</th>
     <th></th>
   </tr>
-  <% documents.each do |document| %>
+
+  <% materials.order(:item_number).each do |material| %>
     <tr>
-      <th colspan="8" class="document-header">Document:  <%= link_to document.name, project_document_url(project, document) %></th>
+      <td><%= material.item_number %></td>
+      <td><%= link_to material.name, project_material_url(project, material) %></td>
+      <td><%= material.material_status.name %></td>
+      <td><%= material.heat_number %></td>
+      <td><%= material.quantity %></td>
+      <td><%= material.vendor %></td>
+      <td><%= link_to "Edit", edit_project_material_url(project, material) %> <%= link_to "Delete", project_material_url(project, material), :method => :delete, :confirm => "Are you sure you want to delete #{material.name}?" %></td>
     </tr>
-    <% document.materials.order(:item_number).each do |material| %>
-      <tr>
-        <td><%= material.item_number %></td>
-        <td><%= link_to material.name, project_material_url(project, material) %></td>
-        <td><%= material.material_status.name %></td>
-        <td><%= material.heat_number %></td>
-        <td><%= material.quantity %></td>
-        <td><%= material.vendor %></td>
-        <td><%= link_to "Edit", edit_project_material_url(project, material) %> <%= link_to "Delete", project_material_url(project, material), :method => :delete, :confirm => "Are you sure you want to delete #{material.name}?" %></td>
-      </tr>
-    <% end %>
   <% end %>
 </table>

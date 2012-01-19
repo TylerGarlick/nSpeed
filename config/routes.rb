@@ -16,6 +16,7 @@ Nspeed::Application.routes.draw do
     end
     resources :submittals
     resources :material_types
+    resources :material_lists
   end
 
   namespace :admin do

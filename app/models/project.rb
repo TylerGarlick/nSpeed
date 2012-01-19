@@ -6,7 +6,9 @@ class Project < ActiveRecord::Base
   has_many :project_requirements
   has_many :prerequisites
   has_many :submittal_statuses
-  has_many :materials
+  has_many :material_lists
+  has_many :materials, :through => :material_lists
+
 
   has_and_belongs_to_many :documents
 

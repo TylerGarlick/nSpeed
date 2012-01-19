@@ -16,13 +16,15 @@ class Document < ActiveRecord::Base
   has_many :role_resources, :as => :resource
   has_many :roles, :through => :role_resources
 
-  has_many :material_pos
-  has_many :pos, :through => :material_pos
 
   accepts_nested_attributes_for :document_assets
 
   def current_document
     document_assets.order("created_at DESC").first
+  end
+
+  def current_document_url
+    current_document.asset_url
   end
 
   private

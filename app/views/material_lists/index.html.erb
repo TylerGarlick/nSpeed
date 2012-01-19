@@ -1,0 +1,43 @@
+<% content_for :titlebar do %>
+  <h1><%= link_to "Project #{project.name}", project_url(project) %> > Bill of Materials</h1>
+  <div class="nav">
+    <%= link_to "New Bill Of Materials", new_project_material_list_url(project) %>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'projects/project_sidebar' %>
+<% end %>
+
+<div class="search_area">
+  test
+</div>
+
+<table>
+  <tr>
+    <th>Line Number</th>
+    <th>Material</th>
+    <th>Quantity</th>
+    <th></th>
+  </tr>
+  <% documents.each do |document| %>
+    <tr style="background:#cdcdcd;">
+      <td colspan="3">Drawing:  <%= link_to document.name, project_document_url(project, document) %></td>
+    </tr>
+    
+    <% material_lists.where(document_id: document).each do |list| %>
+      <tr>
+        <td><%= list.material.item_number %></td>
+        <td><%= list.material.material_type.name %></td>
+        <td><%= list.material.quantity %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+
+
+<script>
+
+</script>

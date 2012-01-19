@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120119040222) do
+ActiveRecord::Schema.define(:version => 20120119201727) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20120119040222) do
     t.integer  "document_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "material_id"
   end
 
   create_table "material_status_histories", :force => true do |t|
@@ -105,31 +106,17 @@ ActiveRecord::Schema.define(:version => 20120119040222) do
   end
 
   create_table "materials", :force => true do |t|
-    t.string   "name"
-    t.string   "heat_number"
-    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"
-    t.integer  "document_id"
     t.integer  "item_number"
     t.integer  "quantity"
-    t.string   "vendor"
     t.text     "description"
-    t.string   "astm_number"
-    t.string   "material_tracking_number"
     t.integer  "material_status_id"
-    t.integer  "tested_user_id"
-    t.integer  "received_user_id"
-    t.integer  "ordered_user_id"
-    t.integer  "quantity_received"
-    t.integer  "quantity_ordered"
-    t.datetime "received_date"
-    t.datetime "ordered_date"
-    t.datetime "tested_date"
     t.string   "invoice_url"
     t.integer  "material_type_id"
-    t.integer  "material_list_id"
+    t.integer  "created_user_id"
+    t.string   "country_of_origin"
   end
 
   create_table "prerequisites", :force => true do |t|

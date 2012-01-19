@@ -2,6 +2,11 @@
   <%= f.error_messages %>
 
   <div class="fields">
+    <%= f.label :material_type_id %>
+    <%= f.collection_select :material_type_id, material_types, :id, :name %>
+  </div>
+
+  <div class="fields">
     <%= f.label :document_id %>
     <%= f.collection_select :document_id, documents, :id, :name %>
   </div>
