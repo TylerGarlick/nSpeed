@@ -16,7 +16,7 @@ class MaterialTypesController < ApplicationController
 
   def create
     if material_type.save
-      redirect_to material_types_url, notice: "Material Type #{material_type.name} was created successfully!"
+      redirect_to project_material_types_url(project), notice: "Material Type #{material_type.name} was created successfully!"
     else
       render :new
     end
@@ -27,7 +27,7 @@ class MaterialTypesController < ApplicationController
 
   def update
     if material_type.update_attribues(params[:material_type])
-      redirect_to material_types_url, notice: "Material Type #{material_type.name} was updated successfully!"
+      redirect_to project_material_types_url(project), notice: "Material Type #{material_type.name} was updated successfully!"
     else
       render :edit
     end
@@ -35,6 +35,6 @@ class MaterialTypesController < ApplicationController
 
   def destroy
     material_type.destroy
-    redirect_to material_types_url, notice: "Material Type #{material_type.name} was deleted successfully!"
+    redirect_to project_material_types_url(project), notice: "Material Type #{material_type.name} was deleted successfully!"
   end
 end

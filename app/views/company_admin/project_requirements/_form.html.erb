@@ -1,0 +1,17 @@
+<%= form_for [:company_admin, project, project_requirement] do |f| %>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="fields">
+    <%= f.label :prerequisite_id  %>
+    <%= f.collection_select :prerequisite_id, prerequisites, :id, :name %>
+  </div>
+  <div class="fields">
+    <%= f.label :customer_document_reference, "Customer Document #" %>
+    <%= f.text_field :customer_document_reference %>
+  </div>
+  <div class="buttons">
+    <%= f.submit project_requirement.new_record? ? "Create" : "Update" %> <%= link_to "Cancel", company_admin_project_prerequisites_url %>
+  </div>
+<% end %>
