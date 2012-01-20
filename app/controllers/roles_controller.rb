@@ -13,6 +13,7 @@ class RolesController < AuthenticateUserController
   end
 
   def create
+    save_users(params["table_users_field_id"])
     role.active = true
     if role.save
       redirect_to company_admin_roles_url, :notice => "#{role.name} was created successfully!"
@@ -28,12 +29,7 @@ class RolesController < AuthenticateUserController
   end
 
   def update
-    role.users = []
-    unless params["table_users_field_id"].nil?
-      params["table_users_field_id"].each do |id|
-        role.users << User.find(id)
-      end
-    end
+    save_users(params["table_users_field_id"])
     if role.update_attributes(params[:role])
       redirect_to company_admin_roles_url, :notice => "#{role.name} was updated successfully!"
     else
@@ -60,4 +56,12 @@ class RolesController < AuthenticateUserController
     is_super_or_company_admin?(current_user.company)
   end
 
+  def save_users(user_list)
+    role.users = []
+    unless user_list.nil?
+      user_list.each do |id|
+        role.users << User.find(id)
+      end
+    end
+  end
 end
