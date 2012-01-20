@@ -60,7 +60,7 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    document.destroy?
+    document.destroy
     redirect_to project_documents_url(project), :notice => "Document was deleted successfully!"
   end
 end
