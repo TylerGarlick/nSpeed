@@ -1,7 +1,7 @@
 class CompanyAdmin::UsersController < ApplicationController
-  expose(:company) {current_user.company}
+  expose(:company) { current_user.company }
   expose(:users) {
-    params[:term].blank? ? User.where('username LIKE ?', "%#{params[:term]}%") : User.all
+    params[:term].blank? ? User.all : User.where('username LIKE ?', "%#{params[:term]}%")
   }
   expose(:user)
 

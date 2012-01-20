@@ -32,7 +32,7 @@
     <%= mf.hidden_field :material_status_id, :value => material_status.id %>
     <%= mf.hidden_field :project_id, :value => project.id %>
   <% end %>
-
+  <%= f.hidden_field :project_id, :value => project.id %>
   <div class="buttons">
     <%= f.submit material_list.new_record? ? "Create" : "Update" %>
     <%= link_to "Cancel", project_material_lists_url(project) %>
