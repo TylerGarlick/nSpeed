@@ -7,4 +7,4 @@
 <% end %>
 
 <h1>Edit Project: <%= project.name %></h1>
-<%= render :partial => 'form' %>
+<%= render :partial => 'form', :locals => {:url => company_admin_project_roles_url(project, :json)} %>

@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   def authorize_user(roles, company)
-    
+    unless (is_super_admin? || (is_company_admin? && (current_user.company == company)))
+      #redirect_to root_url, notice: "You aren't authorized."
+    end
   end
 
   def is_super_admin?

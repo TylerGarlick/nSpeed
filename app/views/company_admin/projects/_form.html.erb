@@ -34,7 +34,7 @@
     <script>
       $("#roles_table").completable_table({
           url:function() {
-              return "<%= company_admin_project_roles_url(project,:json) %>";
+              return "<%= url %>";
           },
           id:"roles_field",
           heading:["name", "mode"],

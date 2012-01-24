@@ -11,7 +11,7 @@
       <script>
         $("#users_table").completable_table({
             url:function() {
-                return "<%= company_admin_users_url(:json) %>";
+                return "<%= url %>";
             },
             id:"users_field",
             heading:["username"],

@@ -17,6 +17,7 @@ class CompanyAdmin::ProjectsController < CompanyAdminController
   end
 
   def create
+    save_roles
     company.projects << project
     if company.save
       redirect_to company_admin_projects_url, :notice => "Project #{project.name} was created successfully!"
@@ -33,15 +34,7 @@ class CompanyAdmin::ProjectsController < CompanyAdminController
     project_id = project.id # save for later
     result = false
     project.transaction do
-      project.roles = []
-      RoleResource.where(:resource_id => project).where(:resource_type => 'Project').delete_all
-      unless params["table_roles_field_id"].nil?
-        i = 0
-        while i < params["table_roles_field_id"].length do
-          RoleResource.create(:role_id => params["table_roles_field_id"][i], :mode => params["table_roles_field_mode"][i], :resource_id => project.id, :resource_type => "Project")
-          i += 1
-        end
-      end
+      save_roles
       result = project.update_attributes(params[:project])
     end
 
@@ -70,4 +63,18 @@ class CompanyAdmin::ProjectsController < CompanyAdminController
     end
   end
 
+
+  protected
+
+  def save_roles
+    project.roles = []
+    RoleResource.where(:resource_id => project).where(:resource_type => 'Project').delete_all
+    unless params["table_roles_field_id"].nil?
+      i = 0
+      while i < params["table_roles_field_id"].length do
+        RoleResource.create(:role_id => params["table_roles_field_id"][i], :mode => params["table_roles_field_mode"][i], :resource_id => project.id, :resource_type => "Project")
+        i += 1
+      end
+    end
+  end
 end

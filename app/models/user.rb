@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     roles.include?(role)
   end
 
+  def is_in_roles?(roles_list)
+    (roles & roles_list).length > 0
+  end
+
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
