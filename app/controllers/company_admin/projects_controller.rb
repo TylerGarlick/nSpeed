@@ -1,4 +1,4 @@
-class CompanyAdmin::ProjectsController < ApplicationController
+class CompanyAdmin::ProjectsController < CompanyAdminController
 
   expose(:company) {current_user.company}
   expose(:project_types) {company.project_types.order(:name)}

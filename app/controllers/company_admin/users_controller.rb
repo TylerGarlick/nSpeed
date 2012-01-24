@@ -1,7 +1,7 @@
-class CompanyAdmin::UsersController < ApplicationController
+class CompanyAdmin::UsersController < CompanyAdminController
   expose(:company) { current_user.company }
   expose(:users) {
-    params[:term].blank? ? User.all : User.where('username LIKE ?', "%#{params[:term]}%")
+    get_users
   }
   expose(:user)
 
@@ -41,4 +41,9 @@ class CompanyAdmin::UsersController < ApplicationController
     redirect_to company_admin_users_url, notice: "User #{user.username} was deleted successfully!"
   end
 
+  protected
+
+  def get_users
+    params[:term].blank? ? User.all : (is_super_admin? ? User.where('username LIKE ?', "%#{params[:term]}%") : User.where('company_id = ? AND username LIKE ?', company.id, "%#{params[:term]}%"))
+  end
 end

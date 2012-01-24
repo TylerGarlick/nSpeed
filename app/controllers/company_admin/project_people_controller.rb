@@ -1,4 +1,4 @@
-class CompanyAdmin::ProjectPeopleController < ApplicationController
+class CompanyAdmin::ProjectPeopleController < CompanyAdminController
   expose(:company) { current_user.company }
   expose(:project)
 
