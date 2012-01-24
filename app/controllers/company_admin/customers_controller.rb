@@ -1,4 +1,4 @@
-class CompanyAdmin::CustomersController < CompanyAdminController
+class CompanyAdmin::CustomersController < CompanyAdmin::CompanyAdminController
   expose(:company) { current_user.company }
   expose(:customers) { company.customers.paginate(:page => params[:page]) }
   expose(:customer) {

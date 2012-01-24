@@ -1,4 +1,4 @@
-class CompanyAdmin::SubmittalStatusesController < CompanyAdminController
+class CompanyAdmin::SubmittalStatusesController < CompanyAdmin::CompanyAdminController
 
   expose(:company) { current_user.company }
   expose(:project)

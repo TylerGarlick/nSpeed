@@ -1,4 +1,4 @@
-class CompanyAdmin::ProjectTypesController < CompanyAdminController
+class CompanyAdmin::ProjectTypesController < CompanyAdmin::CompanyAdminController
   expose(:company) {current_user.company}
   expose(:project_types) {company.project_types.paginate(:page => params[:page])}
   expose(:project_type)

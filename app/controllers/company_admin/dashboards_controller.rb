@@ -1,4 +1,4 @@
-class CompanyAdmin::DashboardsController < CompanyAdminController
+class CompanyAdmin::DashboardsController < CompanyAdmin::CompanyAdminController
   def show
   end
 end

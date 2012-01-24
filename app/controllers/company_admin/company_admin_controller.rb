@@ -1,4 +1,4 @@
-class CompanyAdminController < ApplicationController
+class CompanyAdmin::CompanyAdminController < ApplicationController
 
   before_filter :authorize_admin_user
 

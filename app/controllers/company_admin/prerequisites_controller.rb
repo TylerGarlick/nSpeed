@@ -1,4 +1,4 @@
-class CompanyAdmin::PrerequisitesController < CompanyAdminController
+class CompanyAdmin::PrerequisitesController < CompanyAdmin::CompanyAdminController
   expose(:company) { current_user.company}
   expose(:project)
 
