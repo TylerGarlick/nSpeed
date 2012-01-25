@@ -40,7 +40,7 @@
           heading:["name", "mode"],
           search:"name",
           combos:{'mode':['read','write']},
-          values: <%= raw(RoleResource.includes(:role).where(:resource_type => project.class).map{|x| {:id => x.role.id, :name => x.role.name, :mode => x.mode}}.to_json) %>
+          values: <%= raw((project.id.blank? ? [] :RoleResource.includes(:role).where(:resource_id => project.id).where(:resource_type => project.class).map{|x| {:id => x.role.id, :name => x.role.name, :mode => x.mode}}).to_json) %>
       })
     </script>
 

@@ -17,9 +17,9 @@ class CompanyAdmin::ProjectsController < CompanyAdmin::CompanyAdminController
   end
 
   def create
-    save_roles
     company.projects << project
     if company.save
+      save_roles
       redirect_to company_admin_projects_url, :notice => "Project #{project.name} was created successfully!"
     else
       render :new
