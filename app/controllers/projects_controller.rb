@@ -7,6 +7,7 @@ class ProjectsController < AuthenticateUserController
   end
 
   def show
+    authorize_user(project.roles, project.company)
   end
 
   def update
@@ -19,6 +20,8 @@ class ProjectsController < AuthenticateUserController
 
   def destroy
   end
+  
+protected
 
   def accessible_projects
     if is_super_admin?
