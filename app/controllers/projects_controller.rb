@@ -7,7 +7,7 @@ class ProjectsController < AuthenticateUserController
   end
 
   def show
-    authorize_user(project.roles, project.company)
+    authorize_user(project.company, project)
   end
 
   def update
